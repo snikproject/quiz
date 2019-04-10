@@ -1,7 +1,6 @@
 import React from 'react';
 
 const QUESTION_DATA = [
-{question: <span> What is defined by this? "callret-0"</span>, answers: [<span> callret-1</span>,<span>callret-2</span>,<span>callret-3</span>,<span>callret-4</span>,], correct: 0},
 {question: <span> What is defined by this? "Logical and chronological sequence of enterprise functions which interpret or update data about entities. Different from business processes, information processes do not contain the conditions under which enterprise functions are performed."</span>, answers: [<span> 3LGM² Information Process</span>,<span>entity type</span>,<span>software product</span>,<span>UML Class</span>,], correct: 0},
 {question: <span> What is defined by this? "The X contains all clinical data about a patient, including medical and nursing anamnesis, finding discharge summery etc."</span>, answers: [<span> Patient History</span>,<span>Activity</span>,<span>Diagnosis</span>,<span>Finding</span>,], correct: 0},
 {question: <span> What is defined by this? " diverse software products from different manufacturers lead to very heterogeneous (DB  n  , AC  n  , V  n  ) architectures. At the physical tool layer, heterogeneity is often the consequence of the evolution of the HIS, comprising different generations of computer systems."</span>, answers: [<span> Heterogeneous Architecture</span>,<span>HIS Architecture</span>,<span>Architecture of an Information System</span>,<span>Computer-Based Tool</span>,], correct: 0},
