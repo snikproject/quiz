@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Quiz from './Quiz';
 import Modal from './Modal';
 import Results from './Results';
-import shuffleQuestions from '../helpers/shuffleQuestions';
+import shuffle from '../helpers/shuffle';
 import QUESTION_DATA from '../data/quiz-data';
 
 class QuizApp extends Component {
@@ -17,7 +17,7 @@ class QuizApp extends Component {
 
   getInitialState(totalQuestions) {
     totalQuestions = Math.min(totalQuestions, QUESTION_DATA.length);
-    const QUESTIONS = shuffleQuestions(QUESTION_DATA).slice(0, totalQuestions);
+    const QUESTIONS = shuffle(QUESTION_DATA).slice(0, totalQuestions);
 
     return {
       questions: QUESTIONS,
