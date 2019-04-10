@@ -18,7 +18,12 @@ class QuizApp extends Component {
   getInitialState(totalQuestions) {
     totalQuestions = Math.min(totalQuestions, QUESTION_DATA.length);
     const QUESTIONS = shuffle(QUESTION_DATA).slice(0, totalQuestions);
-
+    for(const q of QUESTIONS)
+    {
+     const correctAnswer = q.answers[q.correct];
+     q.answers=shuffle(q.answers);
+     q.correct=q.answers.indexOf(correctAnswer);
+    }
     return {
       questions: QUESTIONS,
       totalQuestions: totalQuestions,

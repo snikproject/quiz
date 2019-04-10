@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Answer from './Answer';
 
 const Question = ({ question, answers, handleAnswerClick, handleEnterPress }) => {
-console.log(answers);
+  
   return (
     <li className="question">
       <h2 className="question-title" tabIndex="0">
