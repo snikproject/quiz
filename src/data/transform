@@ -1,0 +1,5 @@
+# does not work yet
+sed "s|^|{question: <span> What is defined by this?|" |
+sed "s|	|"<\/span>, answers: [<span>/ |" | 
+sed "s|	|</span>,<span>|g" |
+sed "s|$|</span>,], correct: 1},|"
