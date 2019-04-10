@@ -1,0 +1,32 @@
+# Who (Role) is P Y?
+
+SELECT COUNT DISTINCT ?c1 ?p ?y ?c2 ?c3 (SAMPLE(?c4) as ?c4)
+{
+ meta:Role ^meta:subTopClass ?c4.
+ ?c1 (!meta:subTopClass){1,2} ?c4.
+ filter(?c1!=?c4&&?c2!=?c4&&?c3!=?c4)
+{
+SELECT DISTINCT ?c1 ?p ?y ?c2 (SAMPLE(?c3) as ?c3)
+{
+ meta:Role ^meta:subTopClass ?c3.
+ ?c1 (!meta:subTopClass){1,2} ?c3.
+ filter(?c1!=?c3&&?c2!=?c3)
+{
+SELECT DISTINCT ?c1 ?p ?y (SAMPLE(?c2) as ?c2)
+{
+  meta:Role ^meta:subTopClass ?c2.
+  ?c1 (!meta:subTopClass){1,2} ?c2.
+  filter(?c1!=?c2)
+  {
+  SELECT DISTINCT MIN(?c1) as ?c1 ?p ?y
+   { 
+    ?y a owl:Class.
+    ?c1 ?p ?y.
+    ?c1 meta:subTopClass meta:Role.
+   }
+  }
+} GROUP BY ?c1 ?p ?y
+}
+}
+}
+}
