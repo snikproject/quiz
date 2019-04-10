@@ -1,406 +1,113 @@
 import React from 'react';
 
 const QUESTION_DATA = [
-  {
-    question: <span>Which of the following is TRUE about reflows and repaints?</span>,
-    answers: [
-      <span>They're the same thing.</span>,
-      <span>Repaints (or redraws) occur when elements change their visual styles but not layout.</span>,
-      <span>Reflows compute layout, are more performance critical, and occur when elements are inserted, removed, moved, animated, etc.</span>,
-      <span>The previous two answers are correct.</span>
-    ],
-    correct: 3
-  },
-  {
-    question: <span>What are the three types of JavaScript errors?</span>,
-    answers: [
-      <span>Parse Errors, Syntax Errors and Runtime Errors.</span>,
-      <span>Loading Errors, Runtime Errors and Logic Errors.</span>,
-      <span>Syntax Errors, Logic Errors and Loading Errors.</span>,
-      <span>Bad Errors, Very Bad Errors, and Fatal Errors.</span>
-    ],
-    correct: 1
-  },
-  {
-    question: <span>What's a closure?</span>,
-    answers: [
-      <span>An inner function that has access to an outer function's variables, even after the outer function has executed.</span>,
-      <span>A stateful function; a function that preserves state.</span>,
-      <span>The combination of a function and the lexical environment within which that function was declared.</span>,
-      <span>All of the above.</span>
-    ],
-    correct: 3
-  },
-  {
-    question: <span>Where might you find, or how might you use a closure in JavaScript?</span>,
-    answers: [
-      <span>When currying or implementing partial application.</span>,
-      <span>To emulate private methods.</span>,
-      <span>In event handlers, timers, and asynchronous callbacks.</span>,
-      <span>All of the above.</span>
-    ],
-    correct: 3
-  },
-  {
-    question: <span>Which of these is a use case for the <code>bind</code>, <code>call</code>, or <code>apply</code> methods?</span>,
-    answers: [
-      <span>You can use <code>call</code> or <code>apply</code> to borrow methods from other objects.</span>,
-      <span>You can use <code>bind</code> for partial function application.</span>,
-      <span>If you're using the <code>map</code> method to run a function on an array and you need to preserve the <code>this</code> context, you can use <code>bind</code>.</span>,
-      <span>All of the above.</span>
-    ],
-    correct: 3
-  },
-  {
-    question: <span>What does the <code>bind</code> method do?</span>,
-    answers: [
-      <span>Returns a function that, when executed, will call the original function with a <code>this</code> context that you pass in.</span>,
-      <span>Prevents the value of <code>this</code> from being overridden by <code>call</code> or <code>apply</code>.</span>,
-      <span>Allows you to implement partial application of a function.</span>,
-      <span>All of the above.</span>
-    ],
-    correct: 3
-  },
-  {
-    question: <span>How do objects inherit methods in JavaScript?</span>,
-    answers: [
-      <span>With <code>Object.create</code> or <code>Object.setPrototypeOf</code>.</span>,
-      <span>With <code>class Sub extends Super</code> in ES2015.</span>,
-      <span>Using <code>Parent.prototype.method.call</code> inside <code>Child.prototype.method</code>.</span>,
-      <span>All of the above.</span>
-    ],
-    correct: 3
-  },
-  {
-    question: <span>What is a promise?</span>,
-    answers: [
-      <span>An object that represents a possible future value.</span>,
-      <span>An object that's used for deferred and asynchronous computations.</span>,
-      <span>A proxy for a value that will eventually become available.</span>,
-      <span>All of the above.</span>
-    ],
-    correct: 3
-  },
-  {
-    question: <span>What is CORS?</span>,
-    answers: [
-      <span>Cross-Origin Resource Sharing</span>,
-      <span>Allows restricted resources (e.g. fonts) on a web page to be requested from an outside domain.</span>,
-      <span>Allows scripts to interact more openly with content outside of the original domain, leading to better integration between web services.</span>,
-      <span>All of the above.</span>
-    ],
-    correct: 3
-  },
-  {
-    question: <span>What is an Angular expression?</span>,
-    answers: [
-      <span>A JavaScript-like code snippet that is evaluated by Angular.</span>,
-      <span>A code snippet that is evaluated in the context of the current model scope, rather than within the scope of the global context (window).</span>,
-      <span>A binding in double curly brackets that gets evaluated and the results appear in the DOM in place of it.</span>,
-      <span>All of the above.</span>
-    ],
-    correct: 3
-  },
-  {
-    question: <span>In Angular, what is a directive?</span>,
-    answers: [
-      <span>An Angular feature that takes an element and gives it new functionality.</span>,
-      <span>A reusable component.</span>,
-      <span>A combination of HTML and JavaScript that will execute together.</span>,
-      <span>All of the above.</span>
-    ],
-    correct: 3
-  },
-  {
-    question: <span>What does strict mode do?</span>,
-    answers: [
-      <span>Makes code more optimizable.</span>,
-      <span>Adds restrictions to prevent errors.</span>,
-      <span>Prevents the use of global variables and the use of dangerous code like <code>with</code> and <code>eval</code>.</span>,
-      <span>All of the above.</span>
-    ],
-    correct: 3
-  },
-  {
-    question: <span>What is event bubbling?</span>,
-    answers: [
-      <span>When the browser engine searches down the DOM tree for event handlers.</span>,
-      <span>When the browser engine searches up the DOM tree for event handlers.</span>,
-      <span>When the browser engine searches sideways on sibling elements for event handlers.</span>,
-      <span>None of the above.</span>
-    ],
-    correct: 1
-  },
-  {
-    question: <span>What is event delegation?</span>,
-    answers: [
-      <span>Attaching event handlers to child elements rather than parent elements.</span>,
-      <span>Creating custom event handlers.</span>,
-      <span>Attaching event handlers to a parent element rather than multiple child elements.</span>,
-      <span>None of the above.</span>
-    ],
-    correct: 2
-  },
-  {
-    question: <span>What is dependency injection?</span>,
-    answers: [
-      <span>There's no such thing.</span>,
-      <span>A type of data structure.</span>,
-      <span>A coding pattern in which a class receives the instances of objects it needs from an external source rather than creating them itself.</span>,
-      <span>A new drug the kids are doing nowadays.</span>
-    ],
-    correct: 2
-  },
-  {
-    question: <span>What are the six primitive data types in JavaScript?</span>,
-    answers: [
-      <span>Function, String, Undefined, Digit, Nil, and Double.</span>,
-      <span>Boolean, Null, Undefined, Number, String, and Symbol in ES6.</span>,
-      <span>Number, Class, Object, Hash, String, and Function.</span>,
-      <span>None of the above.</span>
-    ],
-    correct: 1
-  },
-  {
-    question: <span>Which of the following is FALSE about the <code>this</code> keyword?</span>,
-    answers: [
-      <span>Its value is established at the invocation of a function.</span>,
-      <span>When a function is invoked with the <code>new</code> keyword, <code>this</code> is bound to the new object.</span>,
-      <span>Its value is set at the declaration of a function.</span>,
-      <span>None of the above.</span>
-    ],
-    correct: 2
-  },
-  {
-    question: <span>In Angular 2, which of the following are considered Structural Directives (directives that change DOM layout)?</span>,
-    answers: [
-      <span><code>NgFor</code> and <code>NgIf</code></span>,
-      <span><code>NgStyle</code> and <code>NgClass</code></span>,
-      <span><code>NgModel</code> and <code>NgForm</code></span>,
-      <span>None of the above.</span>
-    ],
-    correct: 0
-  },
-  {
-    question: <span>Which is TRUE about the events <code>load</code> and <code>DOMContentLoaded</code>?</span>,
-    answers: [
-      <span>The <code>DOMContentLoaded</code> event comes after the <code>load</code> event.</span>,
-      <span><code>DOMContentLoaded</code> is fired when the document has been loaded and parsed; <code>load</code> fires when all files have finished loading, including images.</span>,
-      <span>The <code>load</code> event is fired when only the DOM is loaded and parsed. <code>DOMContentLoaded</code> is fired when the document is fully loaded, including images.</span>,
-      <span>They're the same thing.</span>
-    ],
-    correct: 1
-  },
-  {
-    question: <span>Which of the following is NOT an example of a data structure in JavaScript?</span>,
-    answers: [
-      <span>Object</span>,
-      <span>Array</span>,
-      <span>Set in ES2015</span>,
-      <span>Trie</span>
-    ],
-    correct: 3
-  },
-  {
-    question: <span>Which of the following values is truthy?</span>,
-    answers: [
-      <span><code>0</code></span>,
-      <span><code>""</code> (empty string)</span>,
-      <span><code>1</code></span>,
-      <span><code>undefined</code></span>
-    ],
-    correct: 2
-  },
-  {
-    question: <span>What is an IIFE?</span>,
-    answers: [
-      <span>Immediately Iterable Function Evaluation</span>,
-      <span>Immediately Invoked Function Expression</span>,
-      <span>Initially Integrated Functional Element</span>,
-      <span>Internally Indexed File Extension</span>
-    ],
-    correct: 1
-  },
-  {
-    question: <span>In React, what method is used to change state?</span>,
-    answers: [
-      <span><code>changeState()</code></span>,
-      <span><code>onChange()</code></span>,
-      <span><code>setState()</code></span>,
-      <span><code>stateSet()</code></span>
-    ],
-    correct: 2
-  },
-  {
-    question: <span>Which of the following is an aspect of a pure function?</span>,
-    answers: [
-      <span>Doesn't have unintended side effects.</span>,
-      <span>Doesn't rely on, or affect, external state.</span>,
-      <span>Given the same input, it'll always return the same output.</span>,
-      <span>All of the above.</span>
-    ],
-    correct: 3
-  },
-  {
-    question: <span>Where is JavaScript used besides the browser?</span>,
-    answers: [
-      <span>Servers, databases, operating systems</span>,
-      <span>Desktop apps, mobile web apps, mobile hybrid apps, mobile native apps</span>,
-      <span>Robots, drones, Internet of Things devices</span>,
-      <span>All of the above.</span>
-    ],
-    correct: 3
-  },
-  {
-    question: <span>What are higher order components in React?</span>,
-    answers: [
-      <span>They're basically wrappers for other components.</span>,
-      <span>They take in another component as an argument.</span>,
-      <span>They're used to extend or modify the behavior of a wrapped component.</span>,
-      <span>All of the above.</span>
-    ],
-    correct: 3
-  },
-  {
-    question: <span>What does the <code>new</code> keyword do?</span>,
-    answers: [
-      <span>Creates a new empty object.</span>,
-      <span>Sets the prototype of the new object to the constructor's prototype and calls the constructor.</span>,
-      <span>Sets the <code>this</code> variable to the new object and returns the new object.</span>,
-      <span>All of the above.</span>
-    ],
-    correct: 3
-  },
-  {
-    question: <span>How is <code>let</code> different from <code>var</code>?</span>,
-    answers: [
-      <span><code>let</code> is block scoped.</span>,
-      <span><code>let</code> isn't hoisted.</span>,
-      <span><code>let</code> can't be redeclared.</span>,
-      <span>All of the above.</span>
-    ],
-    correct: 3
-  },
-  {
-    question: <span>Which of the following is TRUE about the <code>this</code> keyword?</span>,
-    answers: [
-      <span>If a method is called, <code>this</code> refers to the object that the method is a property of. If the <code>new</code> keyword is used, <code>this</code> is the new object instance.</span>,
-      <span>If <code>call</code>, <code>apply</code> or <code>bind</code> are used, <code>this</code> is the object that's passed in as the argument.</span>,
-      <span>If none of the above conditions are met, <code>this</code> refers to the global object (<code>window</code> in the browser in non-strict mode; <code>global</code> in Node).</span>,
-      <span>All of the above.</span>
-    ],
-    correct: 3
-  },
-  {
-    question: <span>Which of the following is something to look out for when using arrow functions?</span>,
-    answers: [
-      <span>An arrow function receives the <code>this</code> value of its surrounding lexical scope at the time it was created; it behaves as if it had been created using <code>fn.bind(this)</code>.</span>,
-      <span>If used in an event handler attached to a DOM element, the <code>this</code> variable will refer to the parent (usually the window) object rather than the element you're targeting.</span>,
-      <span>An arrow function can't be used as a constructor.</span>,
-      <span>All of the above.</span>
-    ],
-    correct: 3
-  },
-  {
-    question: <span>Which of the following methods can be used to organize/encapsulate code?</span>,
-    answers: [
-      <span>The module pattern in ES5 or Module Import Export in ES6.</span>,
-      <span>An Immediately Invoked Function Expression.</span>,
-      <span>OO or Objects Linked to Other Objects</span>,
-      <span>All of the above.</span>
-    ],
-    correct: 3
-  },
-  {
-    question: <span>What's an example of a practical use case for recursion?</span>,
-    answers: [
-      <span>Traversing a tree (e.g., Walking the DOM).</span>,
-      <span>Flattening a deeply nested array.</span>,
-      <span>Deep freezing a deeply nested object.</span>,
-      <span>All of the above.</span>
-    ],
-    correct: 3
-  },
-  {
-    question: <span>What's the difference between <code>=</code>, <code>==</code>, and <code>===</code>?</span>,
-    answers: [
-      <span><code>=</code> is the basic assignment operator. It assigns the value of its right operand to its left operand.</span>,
-      <span><code>==</code> compares two values for equality AFTER converting both values to a common type.</span>,
-      <span><code>===</code> is used for strict equality. It checks for equality of both value AND type.</span>,
-      <span>All of the above.</span>
-    ],
-    correct: 3
-  },
-  {
-    question: <span>Which of the following is true about passing by value vs reference?</span>,
-    answers: [
-      <span>Objects, arrays, and functions are passed by reference.</span>,
-      <span>string, number, boolean, symbol, null and undefined are passed by value.</span>,
-      <span>Primitive types are passed by value and non-primitive types are passed by reference.</span>,
-      <span>All of the above.</span>
-    ],
-    correct: 3
-  },
-  {
-    question: <span>What is a <code>static</code> method?</span>,
-    answers: [
-      <span>A function that exists on an instance, not a class.</span>,
-      <span>A method that only takes one argument.</span>,
-      <span>A function that exists on a class, not an instance.</span>,
-      <span>None of the above.</span>
-    ],
-    correct: 2
-  },
-  {
-    question: <span>Which of the following is TRUE about the difference between <code>undefined</code> and <code>null</code>.</span>,
-    answers: [
-      <span>A variable is <code>undefined</code> when it's been declared but hasn't been assigned a value.</span>,
-      <span><code>null</code> is purposely assigned as a representation of "no value."</span>,
-      <span><code>undefined</code> is returned when trying to access a non-existant property of an object.</span>,
-      <span>All of the above.</span>
-    ],
-    correct: 3
-  },
-  {
-    question: <span>In React, which of the following is TRUE about the difference between an element and a component?</span>,
-    answers: [
-      <span>A React element is an object representation of a DOM node.</span>, 
-      <span>A component is a <code>class</code> or a <code>function</code>.</span>,
-      <span>A component accepts props and returns a React element.</span>,
-      <span>All of the above.</span>
-    ],
-    correct: 3
-  },
-  {
-    question: <span>In React, which is TRUE about the difference between controlled components and uncontrolled components?</span>,
-    answers: [
-      <span>With controlled components, form data is handled by React.</span>, 
-      <span>A controlled input accepts its current value as a prop, and a callback to change that value.</span>,
-      <span>With uncontrolled components, form data is handled by the DOM, and input values can be accessed using refs.</span>,
-      <span>All of the above.</span>
-    ],
-    correct: 3
-  },
-  {
-    question: <span>In React, what's the execution order for methods and lifecycle hooks on initial render?</span>,
-    answers: [
-      <span><code>componentDidMount()</code> → <code>render()</code> → <code>getDerivedStateFromProps()</code> → <code>constructor()</code></span>, 
-      <span><code>render()</code> → <code>componentDidMount()</code> → <code>constructor()</code> → <code>getDerivedStateFromProps()</code></span>,
-      <span><code>constructor()</code> → <code>getDerivedStateFromProps()</code> → <code>render()</code> → <code>componentDidMount()</code></span>,
-      <span>None of the above.</span>
-    ],
-    correct: 2
-  },
-  {
-    question: <span>In React, which is TRUE about the difference between a class component, a PureComponent, and a functional component?</span>,
-    answers: [
-      <span>Standard class components have state, lifecycle hooks, and refs.</span>, 
-      <span>A PureComponent is just like a class component, but handles shouldComponentUpdate for you, with a shallow check for changes in props or state. This allows for a performance boost by preventing unnecessary rerenders.</span>,
-      <span>Functional components are presentational; they don't have access to state or lifecycle hooks, and can't use refs.</span>,
-      <span>All of the above.</span>
-    ],
-    correct: 3
-  }
+{question: <span> What is defined by this? "Logical and chronological sequence of enterprise functions which interpret or update data about entities. Different from business processes, information processes do not contain the conditions under which enterprise functions are performed."</span>, answers: [<span>3LGM² Information Process</span>,<span>3LGM² Enterprise Function</span>,<span>Information Management Entity Type</span>,<span>Object Class</span>,], correct: 0},
+{question: <span> What is defined by this? "The patient history contains all clinical data about a patient, including medical and nursing anamnesis, finding discharge summery etc."</span>, answers: [<span>Patient History</span>,<span>Patient Care Entity Type</span>,<span>Procedure Class</span>,<span>Recommendations for Further Treatment</span>,], correct: 0},
+{question: <span> What is defined by this? "For the hospital as an enterprise, the hospital information system should typically contribute to high quality patient care, efficient usage of resources, and fulfillment of legal requirements as general goals of all hospitals."</span>, answers: [<span>Fulfillment of Strategic Hospital Goal</span>,<span>Quality of HIS Outcome</span>,<span>Strategic Hospital Goal</span>,<span>Strategic Information Management Goal</span>,], correct: 0},
+{question: <span> What is defined by this? "Correct assignment of entities, for example the assignment of cases to a certain patient, or of results to a case. A precondition is object identity. Referential integrity is an important condition for integrity within health information systems."</span>, answers: [<span>Referential Integrity</span>,<span>Integrity of Data</span>,<span>Object Identity</span>,<span>Quality of Data</span>,], correct: 0},
+{question: <span> What is defined by this? "Information is a specific determination about entities such as facts, events, things, persons, processes, ideas, or concepts."</span>, answers: [<span>Information</span>,<span>Information</span>,<span>Information Management Entity Type</span>,<span>Research and Education Entity Type</span>,], correct: 0},
+{question: <span> What is defined by this? "Internal Quality Management assures a defined quality of all processes and outcomes of the hospital"</span>, answers: [<span>Internal Quality Management</span>,<span>Quality Management</span>,<span>Quality Report</span>,<span>Strategic Hospital Goal</span>,], correct: 0},
+{question: <span> What is defined by this? "The information system of a health care network is called a transinstitutional health information system"</span>, answers: [<span>Transinstitutional Health Information System</span>,<span>Telemicroscopy</span>,<span>Health Information System</span>,<span>Health Insurance Company</span>,], correct: 0},
+{question: <span> What is defined by this? "Architectural style of health information systems where an application component is able to provide services and/or to invoke services from other application components (e.g., by remote function calls)."</span>, answers: [<span>SOA</span>,<span>Middleware</span>,<span>SOA Service</span>,<span>Communication Server</span>,], correct: 0},
+{question: <span> What is defined by this? "A description of what the modeler thinks to be relevant of a system. In the sciences, models commonly represent a simplified depiction of reality or excerpts of it. Models are adapted to answer certain questions or to solve certain tasks. Models may be developed based on metamodels."</span>, answers: [<span>Model</span>,<span>Metamodel</span>,<span>Model</span>,<span>software product</span>,], correct: 0},
+{question: <span> What is defined by this? "All activities of a health care institution’s management that ensure and continually improve the quality of patient care. This includes setting the goals, defining the responsibilities, and establishing and monitoring the processes to achieve these goals."</span>, answers: [<span>Quality Management</span>,<span>Management</span>,<span>Diagnostic Standard</span>,<span>Enterprise Organizational Structure</span>,], correct: 0},
+{question: <span> What is defined by this? "Is an evidence-based approach that describes which activities have to be performed for a specific group of patients when and by whom"</span>, answers: [<span>Clinical Pathway</span>,<span>Activity</span>,<span>Patient Care Entity Type</span>,<span>Research and Education Entity Type</span>,], correct: 0},
+{question: <span> What is defined by this? "Transaction management guarantees 'C'onsistency of data by 'A'tomicity, 'I'solation and 'D'urability of any transaction (ACID conditions)."</span>, answers: [<span>ACID</span>,<span>Durability</span>,<span>Information Management Entity Type</span>,<span>Integrity of Data</span>,], correct: 0},
+{question: <span> What is defined by this? "Server clusters are coupled servers."</span>, answers: [<span>Server Cluster</span>,<span>Server</span>,<span>Physical Data Processing System</span>,<span>Physical Data Processing System</span>,], correct: 0},
+{question: <span> What is defined by this? "Monitoring deals with caring for the verification of the proper working and effectiveness of components of the hospital information system"</span>, answers: [<span>Operational HIS Monitoring</span>,<span>Information Management</span>,<span>Operational Management Concept</span>,<span>Physical Data Processing System</span>,], correct: 0},
+{question: <span> What is defined by this? "Condition of an information system where the application components needed for the completion of a certain task can be used where they are needed."</span>, answers: [<span>Access Integration</span>,<span>Integration</span>,<span>Quality of Computer-Based Application Components and Their Integration</span>,<span>Quality of HIS Structures</span>,], correct: 0},
+{question: <span> What is defined by this? "One form of a health care network where health care institutions join together to consolidate their roles, resources, and operations in order to deliver a coordinated range of services and to enhance effectiveness and efficiency of patient care."</span>, answers: [<span>Integrated Health Care Delivery System</span>,<span>Information Management Entity Type</span>,<span>Integrated Care Network</span>,<span>Rehabilitation Center</span>,], correct: 0},
+{question: <span> What is defined by this? "An entity type is a representation of 1. an object class and of 2. the data representing information concerning the objects of this object class, if these data are stored or could or should be stored in the information system."</span>, answers: [<span>3LGM² Entity Type</span>,<span>UML Class</span>,<span>Object Class</span>,<span>Research and Education Entity Type</span>,], correct: 0},
+{question: <span> What is defined by this? "In the 3LGM², the logical tool layer describes the set of application components used in a health care institution to support its enterprise functions. On this layer, application components communicate representations of entity types as messages via communication links and store them as data."</span>, answers: [<span>3LGM² Logical Tool Layer</span>,<span>3LGM² Application Component</span>,<span>3LGM² Communication Interface</span>,<span>3LGM² Enterprise Function</span>,], correct: 0},
+{question: <span> What is defined by this? "Describes how messages of a certain data format are communicated when an event occurs. Within health information systems, well-known examples are HL7 and DICOM."</span>, answers: [<span>Communication Standard</span>,<span>Standard</span>,<span>3LGM²-M Communication Standard</span>,<span>Information Management Entity Type</span>,], correct: 0},
+{question: <span> What is defined by this? "There is an ISO standard (ISO TR 22221) on “Good principles and practices for a clinical data warehouse (CDW)” which provides implementation guidance for data warehouses in a HIS."</span>, answers: [<span>ISO TR 22221</span>,<span>ISO Standard</span>,<span>Clinical Data Warehouse</span>,<span>Data Warehouse System</span>,], correct: 0},
+{question: <span> What is defined by this? "Is a request for a diagnostic, therapeutic, or drug service, e.g., a laboratory order or a radiological order."</span>, answers: [<span>Order</span>,<span>Sample</span>,<span>Order Form</span>,<span>Patient Care Entity Type</span>,], correct: 0},
+{question: <span> What is defined by this? "Information management in hospitals is the management of hospital information systems."</span>, answers: [<span>Information Management in Hospitals</span>,<span>Information Management</span>,<span>Hospital Management</span>,<span>Hospital Service</span>,], correct: 0},
+{question: <span> What is defined by this? "Application component supporting patient administration."</span>, answers: [<span>Patient Administration System</span>,<span>Administrative Admission</span>,<span>Computer-Based Application Component</span>,<span>Cost Unit</span>,], correct: 0},
+{question: <span> What is defined by this? "Examination of in and out patients in radiological department"</span>, answers: [<span>CT Scanner</span>,<span>Execution of Radiological Procedures</span>,<span>Imaging Modality</span>,<span>Medical Device</span>,], correct: 0},
+{question: <span> What is defined by this? "All the hospital’s financial operations have to be systematically recorded to meet legal requirements. Financial accounting comprises, for example, debtor accounting, credit accounting, and asset accounting."</span>, answers: [<span>Financial Accounting</span>,<span>Administrative Function</span>,<span>Asset Accounting</span>,<span>Hospital Function</span>,], correct: 0},
+{question: <span> What is defined by this? "Ensures that every update of data which have been consistent will lead to another state in which data are consistent again."</span>, answers: [<span>Transaction Management</span>,<span>ACID</span>,<span>Information Management</span>,<span>Application Component</span>,], correct: 0},
+{question: <span> What is defined by this? "The planned diagnostic, therapeutic, or nursing procedures (such as operations, radiotherapy, radiological examinations, medication) must be executed."</span>, answers: [<span>Execution of Diagnostic Therapeutic and Nursing Procedures</span>,<span>Patient Care</span>,<span>Execution of Diagnostic and Therapeutic Procedures</span>,<span>Hospital Function</span>,], correct: 0},
+{question: <span> What is defined by this? "A software product is a set of rules, represented by software being stored at a certain medium but not implemented and actually executable yet."</span>, answers: [<span>3LGM² Software Product</span>,<span>UML Class</span>,<span>3LGM² Application Component</span>,<span>3LGM² Communication Interface</span>,], correct: 0},
+{question: <span> What is defined by this? "Describes whether data are sufficiently complete for a given purpose. For example, administrative data on a patient should be complete to allow patient identification."</span>, answers: [<span>Completeness</span>,<span>Completeness</span>,<span>Quality of Data</span>,<span>Quality of HIS Structures</span>,], correct: 0},
+{question: <span> What is defined by this? "Set of data that are arranged as a unit in order to be communicated between application components."</span>, answers: [<span>Message</span>,<span>Message</span>,<span>Information Management Entity Type</span>,<span>Research and Education Entity Type</span>,], correct: 0},
+{question: <span> What is defined by this? "Patient admission (short: admission ) aims at recording and distributing the patient demographics and insurance data as well as medical and nursing data of the patient history.In addition, each patient must be correctly identified, and a unique patient and case identifier must be assigned."</span>, answers: [<span>Patient Admission</span>,<span>Case</span>,<span>Patient Care</span>,<span>Administrative Patient Data</span>,], correct: 0},
+{question: <span> What is defined by this? "Monitoring as part of strategic information management means continuously auditing HIS quality as defined by means of its strategic information management plan’s directives and goals."</span>, answers: [<span>Strategic HIS Monitoring</span>,<span>HIS Certification</span>,<span>Information Management</span>,<span>Analysis and Assessment of the Current HIS State</span>,], correct: 0},
+{question: <span> What is defined by this? "Consists of all planned costs and revenues"</span>, answers: [<span>Hospital Budget</span>,<span>Financial Resource</span>,<span>Hospital Cost</span>,<span>Management Entity Type</span>,], correct: 0},
+{question: <span> What is defined by this? "Model describing the organization of a unit or area. Concepts typically offered are units or roles that stand in a certain organizational relationship to each other."</span>, answers: [<span>Organizational Model</span>,<span>Model</span>,<span>Organizational Unit Modeling Element</span>,<span>Research and Education Entity Type</span>,], correct: 0},
+{question: <span> What is defined by this? "Does an application component have the required functionality? For example, a RIS contains functionality required for report writing, it provides correct output when searching for a patient , and it guarantees security of stored data."</span>, answers: [<span>Functionality</span>,<span>CCHIT Functional Criterion</span>,<span>ISO 25000 Software Quality</span>,<span>Information Management Entity Type</span>,], correct: 0},
+{question: <span> What is defined by this? "Knowledge is general information about concepts in a certain (scientific or professional) domain (e.g., about diseases or therapeutic methods)."</span>, answers: [<span>Knowledge</span>,<span>Information</span>,<span>Knowledge</span>,<span>Information Management Entity Type</span>,], correct: 0},
+{question: <span> What is defined by this? "A communication server is used for the asynchronous sending, receiving, and buffering of messages. Application component supporting asynchronous communication between application components. Stands at the center of the logical tool layer of a hospital information system."</span>, answers: [<span>Communication Server</span>,<span>Middleware</span>,<span>Asynchronous Communication</span>,<span>Integration Technology</span>,], correct: 0},
+{question: <span> What is defined by this? " Event counting comprises observations of clinical situations or processes or analysis of available data (e.g., log ﬁ les), counting the number of events that occur in a given time period."</span>, answers: [<span>Event Counting Study</span>,<span>Observation Protocol</span>,<span>Quantitative Evaluation Method</span>,<span>Research and Education Entity Type</span>,], correct: 0},
+{question: <span> What is defined by this? "Application component for order entry of diagnostic or therapeutic procedures (e.g., lab examinations) from specialized service units as well as for ordering of drugs."</span>, answers: [<span>Computerized Physician Order Entry System</span>,<span>Computer-Based Application Component</span>,<span>Order Entry</span>,<span>Preparation of an Order</span>,], correct: 0},
+{question: <span> What is defined by this? "Application component that supports long-term archiving of patient-related and other data and documents based on sustainable standardized data formats, documents formats, and interfaces."</span>, answers: [<span>Document Archiving System</span>,<span>Computer-Based Application Component</span>,<span>Document Standard</span>,<span>Hospital Function</span>,], correct: 0},
+{question: <span> What is defined by this? "A functionality offered by a software product which directly contributes to the fulfillment of one or more enterprise functions"</span>, answers: [<span>Feature</span>,<span>Information Management Entity Type</span>,<span>Software Product</span>,<span>Software Vendor</span>,], correct: 0},
+{question: <span> What is defined by this? "Several application components store data about certain entity types persistently and contain their own databases"</span>, answers: [<span>DBn Style</span>,<span>ACn Style</span>,<span>Database Style</span>,<span>Vendor Style</span>,], correct: 0},
+{question: <span> What is defined by this? "CCHIT is a not-for-profit organization and offers certification for inpatient EHRs, ambulatory EHRs and other application components."</span>, answers: [<span>CCHIT</span>,<span>Organization</span>,<span>Certification by CCHIT</span>,<span>Inpatient EHR Certification</span>,], correct: 0},
+{question: <span> What is defined by this? "Develops standards for the synchronization of independent application components running on one workstation, in order to support contextual integration."</span>, answers: [<span>CCOW</span>,<span>Organization</span>,<span>CCOW Standard</span>,<span>Communication Standard</span>,], correct: 0},
+{question: <span> What is defined by this? "Certification in general means to confirm that an object or organization has certain characteristics. HIS certification in general describes a process where an accredited body confirms that the HIS fulfills certain pre-defined quality characteristics."</span>, answers: [<span>HIS Certification</span>,<span>Information Management</span>,<span>ISO 9001</span>,<span>Information Management Entity Type</span>,], correct: 0},
+{question: <span> What is defined by this? "deals with particular enterprise functions or application components that are introduced, removed, or changed. Usually these activities are done in the form of projects. Such tactical information management projects are initiated by strategic information management."</span>, answers: [<span>Project Execution</span>,<span>Resource</span>,<span>Information Management</span>,<span>Architecture of an Information System</span>,], correct: 0},
+{question: <span> What is defined by this? "Condition of an information system where features needed in several application components are implemented only once and can be invoked by other application components."</span>, answers: [<span>Functional Integration</span>,<span>Integration</span>,<span>Quality of Computer-Based Application Components and Their Integration</span>,<span>Quality of HIS Structures</span>,], correct: 0},
+{question: <span> What is defined by this? "A message type describes a class of uniform messages and determines which data about which entity types is communicated by a message belonging to this message type."</span>, answers: [<span>3LGM² Message Type</span>,<span>UML Class</span>,<span>3LGM² Entity Type</span>,<span>Information Management Entity Type</span>,], correct: 0},
+{question: <span> What is defined by this? "In the context of hospital information systems, it refers to the processing of data together with their related information, and knowledge.341"</span>, answers: [<span>Information Processing</span>,<span>Information Management</span>,<span>Computer-Based Information Processing</span>,<span>Enterprise Function</span>,], correct: 0},
+{question: <span> What is defined by this? "3LGM²-M extends 3LGM²-B by concepts for modeling message- based communication."</span>, answers: [<span>3LGM²-M</span>,<span>3LGM²</span>,<span>3LGM²-B</span>,<span>3LGM² Domain Layer</span>,], correct: 0},
+{question: <span> What is defined by this? "Standard for request and report messages for diagnostic service departments"</span>, answers: [<span>EN12539</span>,<span>EDIFACT</span>,<span>European Norm</span>,<span>HL7 Version 2</span>,], correct: 0},
+{question: <span> What is defined by this? "Comprises suitability for a task, suitability for learning, suitability for individualization, conformity with user expectations, self-descriptiveness, controllability, and error tolerance of a software product."</span>, answers: [<span>Software Ergonomics</span>,<span>ISO 9241</span>,<span>Quality of Computer-Based Application Components and Their Integration</span>,<span>Quality of HIS Structures</span>,], correct: 0},
+{question: <span> What is defined by this? "Standard for the exchange of laboratory information"</span>, answers: [<span>EN1613</span>,<span>EDIFACT</span>,<span>European Norm</span>,<span>HL7 Version 2</span>,], correct: 0},
+{question: <span> What is defined by this? "Synchronous communication between application components, enabling the execution of a procedure that can run on a remote computer through a process that is running on a local computer."</span>, answers: [<span>Remote Function Call</span>,<span>Middleware</span>,<span>Functional Integration</span>,<span>Integration Technology</span>,], correct: 0},
+{question: <span> What is defined by this? "Is one who treats, according to his or her specialization (e.g., nephrology or pediatrics), patients with certain diagnoses. Examples are physicians and nurses. Staff member directly contributing to patient care, such as a physician or nurse."</span>, answers: [<span>Health Care Professional</span>,<span>Hospital Staff</span>,<span>Medical and Nursing Care Planning</span>,<span>Medical and Nursing Knowledge</span>,], correct: 0},
+{question: <span> What is defined by this? "One part of information management. Deals with particular enterprise functions or application components that are introduced, removed, or changed. Usually these activities are done in the form of projects."</span>, answers: [<span>Tactical Information Management</span>,<span>Project</span>,<span>IT Evaluation Study</span>,<span>IT Investment Justification</span>,], correct: 0},
+{question: <span> What is defined by this? "Process integration is guaranteed when business processes are effectively supported by a set of interacting application components. Condition of an information system where business processes are effectively supported by a set of interacting application components."</span>, answers: [<span>Process Integration</span>,<span>Integration</span>,<span>Transcription</span>,<span>Information Management Entity Type</span>,], correct: 0},
+{question: <span> What is defined by this? "A patient record in general is composed of all data and documents generated or received during the care of a patient at a health care institution."</span>, answers: [<span>Patient Record</span>,<span>Patient Care Entity Type</span>,<span>Patient History</span>,<span>Procedure Class</span>,], correct: 0},
+{question: <span> What is defined by this? "Application component that supports the storage, management, manipulation, and presentation of digital images and their communication to attached workstations for the diagnosing specialists or for the ordering departments."</span>, answers: [<span>Picture Archiving and Communication System</span>,<span>Computer-Based Application Component</span>,<span>Computerized Physician Order Entry System</span>,<span>Data Warehouse System</span>,], correct: 0},
+{question: <span> What is defined by this? "If a HIS (or its subinformation system) comprises only one database to store all patient-related data, we call this the DB 1 style. This single database is often called the central database."</span>, answers: [<span>DB1 Style</span>,<span>Database Style</span>,<span>V1 Style</span>,<span>Vendor Style</span>,], correct: 0},
+{question: <span> What is defined by this? "Classes contain the attributes and methods of a set of similar entities."</span>, answers: [<span>UML Class</span>,<span>UML Attribute</span>,<span>UML Method</span>,<span>Information Management Entity Type</span>,], correct: 0},
+{question: <span> What is defined by this? "A computer-based physical data processing tool, for example, a terminal, server, or personal computer. Computer systems can be physically connected via data wires, leading to physical networks."</span>, answers: [<span>Computer System</span>,<span>Physical Data Processing System</span>,<span>Computer System</span>,<span>Physical Data Processing System</span>,], correct: 0},
+{question: <span> What is defined by this? "Operational information management is responsible for operating the components of the hospital information system. It has to care for its operation in accordance with the strategic information management plan."</span>, answers: [<span>Operational Information Management</span>,<span>Backbone</span>,<span>Network</span>,<span>Function</span>,], correct: 0},
+{question: <span> What is defined by this? "Quality of the information processes that are necessary to meet the user's needs, such as single recording and multiple usability of data, no transcription of data, leanness of information processing tools, efficiency of information logistics, and patient-centred information processing."</span>, answers: [<span>Quality of HIS Processes</span>,<span>HIS Quality</span>,<span>3LGM² Information Process</span>,<span>Quality of Patient Care</span>,], correct: 0},
+{question: <span> What is defined by this? "Facility management comprises the management of buildings, areas, and utilities of the hospital and also influences KPIs"</span>, answers: [<span>Facility Management</span>,<span>Administrative Function</span>,<span>Facility and Area</span>,<span>Hospital Function</span>,], correct: 0},
+{question: <span> What is defined by this? "Standard for patient transfer and discharge"</span>, answers: [<span>EN12538</span>,<span>EDIFACT</span>,<span>European Norm</span>,<span>HL7 Version 2</span>,], correct: 0},
+{question: <span> What is defined by this? "Application component that contains data which have been extracted from other application components, in order to support either hospital management or clinical research."</span>, answers: [<span>Data Warehouse System</span>,<span>Computer-Based Application Component</span>,<span>Execution of Clinical Trials</span>,<span>Execution of Clinical Trials and Experiments</span>,], correct: 0},
+{question: <span> What is defined by this? "technical metamodels, which are used to build models describing the information processing tools usedtechnical metamodels, which are used to build models describing the information processing tools used"</span>, answers: [<span>Technical Metamodel</span>,<span>Metamodel</span>,<span>Application Component</span>,<span>Enterprise Function</span>,], correct: 0},
+{question: <span> What is defined by this? "Planning in tactical information management means planning projects and all the resources needed for them."</span>, answers: [<span>Tactical HIS Planning</span>,<span>Project</span>,<span>Information Management</span>,<span>Analysis and Assessment of the Current HIS State</span>,], correct: 0},
+{question: <span> What is defined by this? "Application component supporting documentation and presentation of vital signs, physician orders, procedure documentation, findings, and other clinical information. Central tool for inter-professional communiation within the health care professional team."</span>, answers: [<span>Patient Chart System</span>,<span>Execution of Diagnostic Therapeutic and Nursing Procedures</span>,<span>Paper-Based Application Component</span>,<span>Preparation of an Order</span>,], correct: 0},
+{question: <span> What is defined by this? "defines specific quality characteristics for software ergonomics"</span>, answers: [<span>ISO 9241</span>,<span>ISO Standard</span>,<span>ISO 9241-110</span>,<span>ISO 9241-110 User Interface Design Quality</span>,], correct: 0},
+{question: <span> What is defined by this? " An economic analysis that compares costs and consequences of an information system component, taking personal preferences into account by including weighting factors for each criterion.  "</span>, answers: [<span>Utility Analysis</span>,<span>Economic Analysis</span>,<span>Quantitative Evaluation Method</span>,<span>System Evaluation Method</span>,], correct: 0},
+{question: <span> What is defined by this? "A group of two or more legally separated health care institutions that have temporarily and voluntarily joined together to achieve a common purpose.           The information system of a health care network is called a transinstitutional health information system."</span>, answers: [<span>Health Care Network</span>,<span>entity type</span>,<span>General Practice</span>,<span>Health Care Institution</span>,], correct: 0},
+{question: <span> What is defined by this? "Hospital management decides on questions of fundamental importance for the hospital development (hospital goals, strategic decisions, personnel decisions and decisions about budget , investments, and key treatments)."</span>, answers: [<span>Hospital Management</span>,<span>Management</span>,<span>Bed Occupation</span>,<span>Description of the Current HIS State</span>,], correct: 0},
+{question: <span> What is defined by this? "Gathering and aggregating financial and other data about the hospital’s operation in order to control and optimize them. This covers, for example, staff controlling, process controlling, material controlling, and financial controlling."</span>, answers: [<span>Controlling</span>,<span>Administrative Function</span>,<span>Management</span>,<span>Administrative Entity Type</span>,], correct: 0},
+{question: <span> What is defined by this? "actions to be undertaken in health care in order to process data and information and to thereby contribute to the mission of health care. A hospital function is an enterprise function of a hospital."</span>, answers: [<span>Hospital Function</span>,<span>Enterprise Function</span>,<span>Strategic Hospital Goal</span>,<span>Enterprise Function</span>,], correct: 0},
+{question: <span> What is defined by this? "An acquired or self-developed piece of software that is complete in itself and that can be installed on a computer system. Controls computer-based application components."</span>, answers: [<span>Software Product</span>,<span>software product</span>,<span>Information Management Entity Type</span>,<span>Long-Term HIS Planning</span>,], correct: 0},
+{question: <span> What is defined by this? "EDIFACT is a message format developed and maintained by the United Nations Centre for Trade Facilitation and Electronic Business (CEFACT) as a standard format for electronic data interchange in electronic commerce (e.g., purchase orders, dispatch/delivery information, and inventory reports)."</span>, answers: [<span>EDIFACT</span>,<span>Communication Standard</span>,<span>Data Integration</span>,<span>Double Examination</span>,], correct: 0},
+{question: <span> What is defined by this? "Application component that supports the management of all resources of an organization, including controlling, financial accounting, facility management, human resources management, quality management, and supply and disposal management."</span>, answers: [<span>Enterprise Resource Planning System</span>,<span>Computer-Based Application Component</span>,<span>Data Warehouse System</span>,<span>Debtor Accounting</span>,], correct: 0},
+{question: <span> What is defined by this? "Like data integration, semantic integration is concerned with data. Semantic integration is           guaranteed if different application components use the same system of concepts, i.e. they interpret data the same way."</span>, answers: [<span>Semantic Integration</span>,<span>Integration</span>,<span>Quality of Computer-Based Application Components and Their Integration</span>,<span>Quality of HIS Structures</span>,], correct: 0},
+{question: <span> What is defined by this? "Important communication standard in health care supporting the transfer of patient- and case-based messages, excluding image data. HL7 describes the events and structure of messages that are exchanged between application components."</span>, answers: [<span>HL7 Standard</span>,<span>Standard</span>,<span>Communication Standard</span>,<span>Information Management Entity Type</span>,], correct: 0},
+{question: <span> What is defined by this? "An application component where the controlling rules for data processing are implemented as executable software."</span>, answers: [<span>Computer-Based Application Component</span>,<span>Computer-Based Application System</span>,<span>computer based application component</span>,<span>application component</span>,], correct: 0},
+{question: <span> What is defined by this? "Administrative admission triggers the opening of a patient record. The patient record may be electronic or paper-based or a mixture of both. For the filing formats of documents standards have to be established and used."</span>, answers: [<span>Opening a Patient Record</span>,<span>Case</span>,<span>Patient</span>,<span>Physician</span>,], correct: 0},
+{question: <span> What is defined by this? "has only functionalities for displaying and for data entry, but has no storing capability."</span>, answers: [<span>Terminal</span>,<span>Client</span>,<span>Computer System</span>,<span>Physical Data Processing System</span>,], correct: 0},
+{question: <span> What is defined by this? "Such a project management board supports the project manager by providing an interface between the project manager, future user groups, vendors involved in the project, and strategic information management authorities like CIO and information management board."</span>, answers: [<span>Project Management Board</span>,<span>Information Management Entity Type</span>,<span>Project Conflict Management</span>,<span>Project Execution</span>,], correct: 0},
+{question: <span> What is defined by this? "consist of classes, abstract classes and associations between classes."</span>, answers: [<span>UML Class Diagram</span>,<span>UML Abstract Class</span>,<span>Data Model</span>,<span>Entity Type Modeling Element</span>,], correct: 0},
+{question: <span> What is defined by this? "Consensus method for the prediction of the future. A panel of experts is  • surveyed on a given topic in several iterative rounds. The result of each round is presented to each expert in anonymized form; the experts are then invited to modify their judgment in the next round.  "</span>, answers: [<span>Delphi Survey</span>,<span>Consensus Method</span>,<span>Evaluation Method</span>,<span>Quantitative Evaluation Method</span>,], correct: 0},
+{question: <span> What is defined by this? "Part 9241-110 of this standard deals with dialogue principles for user interface design"</span>, answers: [<span>ISO 9241-110</span>,<span>ISO Standard</span>,<span>ISO 9241-110 User Interface Design Quality</span>,<span>Quality of Computer-Based Application Components and Their Integration</span>,], correct: 0},
+{question: <span> What is defined by this? "An (AC n , V n ) architecture where the different application components are based on software from different vendors is commonly denoted as “best-of-breed,” pointing to the fact that the hospital combines the “best” software products from different vendors."</span>, answers: [<span>Best-of-Breed-Architecture</span>,<span>Architectural Style of the Logical Tool Layer</span>,<span>DBn Style</span>,<span>Database Style</span>,], correct: 0},
+{question: <span> What is defined by this? "Application component supporting specific documentation tasks (e.g., patient history, planning of care, progress notes, report writing). Typically, it contains specialized modules for different medical fields."</span>, answers: [<span>Medical Documentation System</span>,<span>Computer-Based Application Component</span>,<span>Data Warehouse System</span>,<span>Decision Making and Patient Information</span>,], correct: 0},
+{question: <span> What is defined by this? "Process of entering and transmitting a clinical order to a specialized diagnostic or therapeutic service unit (e.g., lab, radiology, surgery) or to another health care professional. The available service spectrum offered by a service unit may be presented in the form of catalogs."</span>, answers: [<span>Order Entry</span>,<span>Patient Care</span>,<span>Appointment Scheduling</span>,<span>Coding of Diagnoses and Procedures</span>,], correct: 0},
+{question: <span> What is defined by this? "Subfunction of patient admission. Comprises patient identification and documentation of main administrative data during the admission of a patient to an institution. Includes assignment of a patient identification number and of a visit number (case identifier)."</span>, answers: [<span>Administrative Admission</span>,<span>Patient Care</span>,<span>Administrative Patient Data</span>,<span>Coding of Diagnoses and Procedures</span>,], correct: 0},
+{question: <span> What is defined by this? "Socio-technical subsystem of an institution that comprises all information processing as well as the associated human or technical actors in their respective information processing roles. An information system can be divided into sub-information systems."</span>, answers: [<span>Information System</span>,<span>Information Management Entity Type</span>,<span>Physical Data Processing System</span>,<span>Application System</span>,], correct: 0},
+{question: <span> What is defined by this? "The details of the HIS architecture are described in an up-to-date documentation (e.g., using 3LGM ² as modeling language)."</span>, answers: [<span>Transparency</span>,<span>3LGM²</span>,<span>Quality of HIS Architecture</span>,<span>Quality of HIS Structures</span>,], correct: 0},
+{question: <span> What is defined by this? " This  comprises  open,  less-standardized,  nonquantitative  observations  of  processes  or events. In contrary to quantitative observations, the aim is not to count and measure, but to get insight into a situation."</span>, answers: [<span>Qualitative Observation</span>,<span>Observation Protocol</span>,<span>Qualitative Evaluation Method</span>,<span>Research and Education Entity Type</span>,], correct: 0},
+{question: <span> What is defined by this? "An activity interprets data about certain entity types and updates data of certain entity types. Instantiation of an enterprise function. Different from enterprise functions, activities have a definite beginning and end."</span>, answers: [<span>Activity</span>,<span>Activity</span>,<span>Research and Education Entity Type</span>,<span>Enterprise Function</span>,], correct: 0},
+{question: <span> What is defined by this? "Enables evaluations of radiological images from (external) radiologists’ remote workplaces and may be closely connected to RIS and PACS"</span>, answers: [<span>Teleradiology System</span>,<span>Teleradiology</span>,<span>Computer-Based Application Component</span>,<span>Hospital Function</span>,], correct: 0},
+{question: <span> What is defined by this? "Is a person who is a subject of care; information about a patient includes the patient identification number (PIN)"</span>, answers: [<span>Patient</span>,<span>Bed</span>,<span>HIS Stakeholder</span>,<span>Discharge Summary</span>,], correct: 0},
+{question: <span> What is defined by this? "In each country, different laws affect health information processing, addressing, for example, organization of health care, financing of health care, and health statistics. Those laws must be taken into account by information management. "</span>, answers: [<span>Fulfillment of Laws relevant to Information Management</span>,<span>BDSG</span>,<span>Information Management</span>,<span>Application Component</span>,], correct: 0},
+{question: <span> What is defined by this? "For architectures in which computer-based application components provide s ervices to be used by other computer-based application components (so-called service-oriented architectures), the concepts of 3LGM²-S are useful for modeling."</span>, answers: [<span>3LGM²-S</span>,<span>3LGM²</span>,<span>SOA</span>,<span>SOA Service</span>,], correct: 0},
+{question: <span> What is defined by this? "The operation management system supports operation planning and operation documentation as a specialization of execution of diagnositc and therapeutic procedures. Application component that supports planning and documentation within operation rooms."</span>, answers: [<span>Operation Management System</span>,<span>Computer-Based Application Component</span>,<span>Decision Making and Patient Information</span>,<span>Decision Making Planning and Organization of Patient Treatment</span>,], correct: 0},
+{question: <span> What is defined by this? "The outpatient management system is comparable to the medical documentation system.Application Component for outpatient units, supporting, among others, appointment scheduling, medical documentation, work organization, and billing."</span>, answers: [<span>Outpatient Management System</span>,<span>Computer-Based Application Component</span>,<span>Decision Making Planning and Organization of Patient Treatment</span>,<span>Execution of Diagnostic and Therapeutic Procedures</span>,], correct: 0},
+{question: <span> What is defined by this? "ADT stands for messages related to admission, discharge, and transfer of a patient. Admission, discharge, and transfer of a patient, as part of patient administration."</span>, answers: [<span>ADT</span>,<span>HL7 Message Type</span>,<span>HL7 Patient Identification</span>,<span>Information Management Entity Type</span>,], correct: 0},
+{question: <span> What is defined by this? "The physical tool layer is a set of physical data processing systems."</span>, answers: [<span>3LGM² Physical Tool Layer</span>,<span>3LGM² Data Transmission Connection</span>,<span>3LGM² Location</span>,<span>3LGM² Transmitting Medium</span>,], correct: 0},
+{question: <span> What is defined by this? "generalization of findings and experiences to gain new knowledge.120"</span>, answers: [<span>Clinical Research</span>,<span>Finding</span>,<span>Research and Education Function</span>,<span>Hospital Function</span>,], correct: 0},
+{question: <span> What is defined by this? "In the simplest case, the overall HIS consists of only one computer-based application component, which supports most of the enterprise functions."</span>, answers: [<span>AC1 Style</span>,<span>Application Component Style</span>,<span>DB1 Style</span>,<span>Database Style</span>,], correct: 0},
+{question: <span> What is defined by this? " Quantitative  and/or  qualitative  analysis  of  the  most  signiﬁcant strengths (positive features), weaknesses (negative features), opportunities (potential strengths), and threats (potential weaknesses) that characterize an information system. component.  "</span>, answers: [<span>SWOT Analysis</span>,<span>HIS Quality</span>,<span>Evaluation Method</span>,<span>Information Management Entity Type</span>,], correct: 0}
 ];
 
 export default QUESTION_DATA;
