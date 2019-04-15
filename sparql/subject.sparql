@@ -21,6 +21,42 @@ from <http://www.snik.eu/ontology/derived>
  }
 
 }
+
+
+As Labels:
+
+SELECT CONCAT(?pro,STR(?pl)," " ,STR(?ol), "?") STR(?c1l) as ?c1l STR(?c2l) as ?c2l STR(?c3l) as ?c3l STR(?c4l) as ?c4l
+{
+ BIND("What " as ?pro)
+ ?p rdfs:label ?pl.
+ ?o rdfs:label ?ol.
+ ?c1 rdfs:label ?c1l.
+ ?c2 rdfs:label ?c2l.
+ ?c3 rdfs:label ?c3l.
+ ?c4 rdfs:label ?c4l.
+ FILTER(LANGMATCHES(LANG(?pl),"en")&&LANGMATCHES(LANG(?ol),"en")&&LANGMATCHES(LANG(?c1l),"en")&&LANGMATCHES(LANG(?c2l),"en")&&LANGMATCHES(LANG(?c3l),"en")&&LANGMATCHES(LANG(?c4l),"en"))
+{
+SELECT DISTINCT ?p ?o (min(?c1) as ?c1) (min(?c2) as ?c2) (min(?c3) as ?c3) ?c4
+from <http://www.snik.eu/ontology/bb>
+from <http://www.snik.eu/ontology/derived>
+{
+ ?c1 meta:closeNeighbour ?c2,?c3,?c4. 
+ owl:Class ^a ?c1,?c2,?c3,?c4,?o. 
+ filter(?o!=?c1&&?o!=?c2&&?o!=?c3&&?o!=?c4).
+ filter(?c1!=?c2&&?c1!=?c3&&?c1!=?c4&&?c1<?c2&&?c2<?c3&&?c3<?c4).
+
+ # Detractors
+ graph <http://www.snik.eu/ontology/bb>
+ {?c1 ?p ?o.
+ FILTER(?p!=meta:isAssociatedWith).
+ MINUS {?c2 ?p ?o} 
+ MINUS {?c3 ?p ?o} 
+ MINUS {?c4 ?p ?o} 
+ }
+
+}
+}}
+
 ## No Subquery, does time out
 
 
