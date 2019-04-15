@@ -1,0 +1,13 @@
+# Use like "./transform < input > output.js" and then add header and footer.
+sed "s|What entity type component|What contains a|" |
+sed "s|What role component|Who contains a|" |
+sed "s|What function component|What contains a|" |
+sed "s|What is responsible for |Who is responsible for |" |
+sed "s|What approves |Who approves |" |
+sed "s|What is involved in |Who is involved in |" |
+sed "s|a \([AEIOU]\)|an \1|" |
+sed "s|\"||g" |
+sed "s|^|{question: <span>  |" |
+sed "s|	|<\/span>, answers: [<span> |" | 
+sed "s|	|</span>,<span>|g" |
+sed "s|$|</span>,], correct: 0},|"

@@ -1,6 +1,6 @@
 # Use like "./transform < input > output.js" and then add header and footer.
 sed "s|\"||g" |
-sed "s|^|{question: <span>  |" |
-sed "s|	|<\/span>, answers: [<span> |" | 
+sed "s|^|{question: <span> What is defined by this? \"|" |
+sed "s|	|\"<\/span>, answers: [<span> |" | 
 sed "s|	|</span>,<span>|g" |
 sed "s|$|</span>,], correct: 0},|"
