@@ -1,0 +1,95 @@
+# Ask for Subject: Who/Which C is P Y?
+
+## Works
+
+SELECT DISTINCT ?p ?o (min(?c1) as ?c1) (min(?c2) as ?c2) (min(?c3) as ?c3) ?c4
+from <http://www.snik.eu/ontology/bb>
+from <http://www.snik.eu/ontology/derived>
+{
+ ?c1 meta:closeNeighbour ?c2,?c3,?c4. 
+ owl:Class ^a ?c1,?c2,?c3,?c4,?o. 
+ filter(?o!=?c1&&?o!=?c2&&?o!=?c3&&?o!=?c4).
+ filter(?c1!=?c2&&?c1!=?c3&&?c1!=?c4&&?c1<?c2&&?c2<?c3&&?c3<?c4).
+
+ # Detractors
+ graph <http://www.snik.eu/ontology/bb>
+ {?c1 ?p ?o.
+ FILTER(?p!=meta:isAssociatedWith).
+ MINUS {?c2 ?p ?o} 
+ MINUS {?c3 ?p ?o} 
+ MINUS {?c4 ?p ?o} 
+ }
+
+}
+## No Subquery, does time out
+
+
+SELECT ?y ?p (SAMPLE(?c1) as ?c1) (SAMPLE(?c2) as ?c2) (SAMPLE(?c3) as ?c3)
+from <http://www.snik.eu/ontology/bb>
+from <http://www.snik.eu/ontology/derived>
+{
+ ?c1 meta:closeNeighbour|meta:farNeighbour ?c2,?c3.
+ ?st ^meta:subTopClass ?c1,?c2,?c3.
+ FILTER(?c1!=?c2).
+ filter(?c1!=?c3&&?c2!=?c3).
+
+ owl:Class ^a ?y,?c1,?c2,?c3.
+ ?c1 ?p ?y.
+
+ FILTER(?p!=meta:subTopClass&&?p!=meta:closeNeighbour&&?p!=meta:farNeighbour)
+
+} GROUP BY ?y ?p LIMIT 10
+
+# 3:
+
+SELECT COUNT DISTINCT ?p ?y ?c1 ?c2 (SAMPLE(?c3) as ?c3)
+from <http://www.snik.eu/ontology/bb>
+from <http://www.snik.eu/ontology/derived>
+{
+ ?c1 meta:closeNeighbour|meta:farNeighbour ?c3.
+ ?c3 meta:subTopClass ?st.
+ filter(?c1!=?c3&&?c2!=?c3).
+{
+SELECT DISTINCT ?p ?y ?c1 (SAMPLE(?c2) as ?c2)
+{
+ ?c1 meta:closeNeighbour|meta:farNeighbour ?c2
+ filter(?c1!=?c2).
+ ?c2 meta:subTopClass ?st.
+{
+  SELECT DISTINCT SAMPLE(?c1) as ?c1 ?p ?y
+   {
+    owl:Class ^a ?y.
+    ?c1 ?p ?y.
+    ?c1 meta:subTopClass ?st.
+    FILTER(?p!=meta:subTopClass&&?p!=meta:closeNeighbour&&?p!=meta:farNeighbour)
+   } GROUP BY ?c1 ?p ?y LIMIT 1
+ }
+} 
+}
+}
+
+
+##################
+only 2:
+
+# Ask for Subject: Who/Which C is P Y?
+
+SELECT DISTINCT ?p ?y ?c1 (SAMPLE(?c2) as ?c2)
+from <http://www.snik.eu/ontology/bb>
+from <http://www.snik.eu/ontology/derived>
+
+{
+ ?c1 meta:closeNeighbour|meta:farNeighbour ?c2
+ filter(?c1!=?c2&&?c2!=?y).
+ ?c2 meta:subTopClass ?st.
+{
+  SELECT DISTINCT SAMPLE(?c1) as ?c1 ?p ?y
+   {
+    owl:Class ^a ?y.
+    ?c1 ?p ?y.
+    ?c1 meta:subTopClass ?st.
+    FILTER(?p!=meta:subTopClass&&?p!=meta:closeNeighbour&&?p!=meta:farNeighbour&&?p!=meta:isAssociatedWith)
+   } GROUP BY ?c1 ?p ?y 
+ }
+} 
+
