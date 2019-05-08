@@ -4,8 +4,9 @@
 `npm start`
 
 ## Deployment on GitHub Pages
-`npm run build`
-`./deploy`
+
+    npm run build
+    ./deploy
 
 ## Question Templates
 
