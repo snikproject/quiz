@@ -1,6 +1,7 @@
 # SNIK Quiz
 
 ## Usage
+Play at http://www.snik.eu/snik-quiz by clicking on the correct answer for each of the questions.
 
 ## Development
 Requires `npm` and a Linux style command line with tools like `sed`.
@@ -37,4 +38,5 @@ Create the files as required by the process.
     npm run build
     ./deploy
 
-
+### License
+Almost all the code is from https://github.com/davidrayoussef/react-quiz so we just supply the LICENSE file of that project. With our additional code you can do whatever you want. The question data is probably in the same category as https://github.com/IMISE/snik.
