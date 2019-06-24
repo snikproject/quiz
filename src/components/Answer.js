@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Answer = ({ answer, handleAnswerClick, handleEnterPress }) => {
+  //handleEnterPress();
   return (
     <li
       className="question-answer"

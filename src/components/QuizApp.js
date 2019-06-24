@@ -2,20 +2,20 @@ import React, { Fragment, Component } from 'react';
 import PropTypes from 'prop-types';
 import Quiz from './Quiz';
 import Modal from './Modal';
+import TimeUpModal from './TimeUpModal';
 import Results from './Results';
 import shuffle from '../helpers/shuffle';
 import QUESTION_DATA from '../data/quiz-data';
 
 class QuizApp extends Component {
-  state = {
-    ...this.getInitialState(this.props.totalQuestions)
-  };
+  state = this.getInitialState(this.props.totalQuestions);
 
   static propTypes = {
     totalQuestions: PropTypes.number.isRequired
   };
 
   getInitialState(totalQuestions) {
+    for(let i=0;i<1;i++) setTimeout(()=>this.timeUp(),1000);
     totalQuestions = Math.min(totalQuestions, QUESTION_DATA.length);
     const QUESTIONS = shuffle(QUESTION_DATA).slice(0, totalQuestions);
     for(const q of QUESTIONS)
@@ -38,7 +38,11 @@ class QuizApp extends Component {
         state: 'hide',
         praise: '',
         points: ''
+      },
+      timeUpModal: {
+        state: 'hide',
       }
+
     };
   }
 
@@ -87,6 +91,38 @@ class QuizApp extends Component {
     }
   };
 
+
+  timeUp = () => {
+    console.log("Time Is Up");
+/*
+    const { questions, step, userAnswers } = this.state;
+    const currentStep = step - 1;
+    const tries = userAnswers[currentStep].tries;
+    */
+    setTimeout(() => this.showTimeUpModal(), 750);
+    setTimeout(this.nextStep, 2750);
+    /*
+
+    const isCorrect = questions[0].correct === index;
+    const currentStep = step - 1;
+
+    userAnswers[currentStep] = {
+        tries: tries + 1
+      };
+*/
+
+/*    const { questions, step, userAnswers } = this.state;
+    const currentStep = step - 1;
+    const tries = userAnswers[currentStep].tries;
+
+  //    e.target.classList.add('right');
+      setTimeout(() => this.showModal(tries), 750);
+
+  */
+  //this.nextStep();
+
+  };
+
   showModal = (tries) => {
     let praise;
     let points;
@@ -122,6 +158,15 @@ class QuizApp extends Component {
     });
   };
 
+  showTimeUpModal = () => {
+    this.setState({
+      timeUpModal: {
+        state: 'show',
+      }
+    });
+  };
+
+
   nextStep = () => {
     const { questions, userAnswers, step, score } = this.state;
     const restOfQuestions = questions.slice(1);
@@ -154,7 +199,7 @@ class QuizApp extends Component {
   };
 
   render() {
-    const { step, questions, userAnswers, totalQuestions, score, modal } = this.state;
+    const { step, questions, userAnswers, totalQuestions, score, modal, timeUpModal } = this.state;
 
     if (step >= totalQuestions + 1) {
       return (
@@ -174,7 +219,7 @@ class QuizApp extends Component {
           handleAnswerClick={this.handleAnswerClick}
           handleEnterPress={this.handleEnterPress}
         />
-        { modal.state === 'show' && <Modal modal={modal} /> }
+        { modal.state === 'show' && <Modal modal={modal} /> && <TimeUpModal timeUpModal={timeUpModal} /> }
       </Fragment>
     );
   }
