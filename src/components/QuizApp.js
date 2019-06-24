@@ -94,22 +94,22 @@ class QuizApp extends Component {
     switch (tries) {
       case 0: {
         praise = '1st Try!';
-        points = '+10';
+        points = '+23';
         break;
       }
       case 1: {
         praise = '2nd Try!';
-        points = '+5';
+        points = '+11';
         break;
       }
       case 2: {
-        praise = 'Correct!';
-        points = '+2';
+        praise = '3rd Try';
+        points = '+5';
         break;
       }
       default: {
-        praise = 'Correct!';
-        points = '+1';
+        praise = 'Last Try';
+        points = '+0';
       }
     }
 
@@ -140,10 +140,10 @@ class QuizApp extends Component {
 
   updateScore(tries, score) {
     switch (tries) {
-      case 1: return score + 10;
-      case 2: return score + 5;
-      case 3: return score + 2;
-      default: return score + 1;
+      case 1: return score + 23;
+      case 2: return score + 11;
+      case 3: return score + 5;
+      default: return score + 0;
     }
   }
 
