@@ -7,7 +7,7 @@ import Results from './Results';
 import shuffle from '../helpers/shuffle';
 import QUESTION_DATA from '../data/quiz-data';
 
-const QUESTION_TIME_MS = 3000;
+export const QUESTION_SECONDS = 10;
 
 class QuizApp extends Component {
   state = this.getInitialState(this.props.totalQuestions);
@@ -54,7 +54,7 @@ class QuizApp extends Component {
     console.debug("timer start for step "+this.state.step);
     this.setState({timerStep: this.state.step, timerActive: true, timeUp: false});
 
-    setTimeout(()=>this.timerEnd(this.state.step),QUESTION_TIME_MS);
+    setTimeout(()=>this.timerEnd(this.state.step),QUESTION_SECONDS*1000);
   }
 
   timerCancel = () =>
@@ -63,7 +63,7 @@ class QuizApp extends Component {
   }
 
   timerEnd = (step) => {
-    if(!this.state.timerActive) {console.debug("Timer Cancelled"); return;}
+    if(!this.state.timerActive) {console.debug("timer cancelled for step "+step); return;}
     if(step!==this.state.step) {console.warn("Outdated timer for step "+step+"cancelled.");return;}
     this.setState({timerActive: false, timeUp: true});
     console.log("time is up for step "+step);

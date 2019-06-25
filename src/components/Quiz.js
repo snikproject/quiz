@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import QuestionList from './QuestionList';
+import ReactCountdownClock from 'react-countdown-clock';
+import {QUESTION_SECONDS} from './QuizApp';
 
 const Quiz = ({ step, questions, totalQuestions, score, handleAnswerClick, handleEnterPress }) => {
   return (
@@ -10,6 +12,13 @@ const Quiz = ({ step, questions, totalQuestions, score, handleAnswerClick, handl
           <h2>Question</h2>
           <div className="question-number">{step}</div>
           <div className="description">of <span>{totalQuestions}</span></div>
+        </div>
+        <div>
+        <ReactCountdownClock seconds={QUESTION_SECONDS}
+                   color="#000"
+                   alpha={0.9}
+                   size={180}
+                    />
         </div>
         <h1>SNIK Quiz</h1>
         <div className="score-container">
