@@ -4,7 +4,7 @@ import QuestionList from './QuestionList';
 import ReactCountdownClock from 'react-countdown-clock';
 import {QUESTION_SECONDS} from './QuizApp';
 
-const Quiz = ({ step, questions, totalQuestions, score, handleAnswerClick, handleEnterPress }) => {
+const Quiz = ({ step, questions, totalQuestions, score, handleAnswerClick, handleEnterPress, state }) => {
   return (
     <div className="wrapper">
       <header>
@@ -15,6 +15,7 @@ const Quiz = ({ step, questions, totalQuestions, score, handleAnswerClick, handl
         </div>
         <div>
         <ReactCountdownClock seconds={QUESTION_SECONDS}
+                   key={state.clockCompletions}
                    color="#000"
                    alpha={0.9}
                    size={180}
@@ -40,6 +41,7 @@ const Quiz = ({ step, questions, totalQuestions, score, handleAnswerClick, handl
 }
 
 Quiz.propTypes = {
+  state: PropTypes.object.isRequired,
   step: PropTypes.number.isRequired,
   questions: PropTypes.array.isRequired,
   totalQuestions: PropTypes.number.isRequired,

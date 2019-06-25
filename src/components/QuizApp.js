@@ -7,7 +7,7 @@ import Results from './Results';
 import shuffle from '../helpers/shuffle';
 import QUESTION_DATA from '../data/quiz-data';
 
-export const QUESTION_SECONDS = 10;
+export const QUESTION_SECONDS = 30;
 
 class QuizApp extends Component {
   state = this.getInitialState(this.props.totalQuestions);
@@ -36,6 +36,7 @@ class QuizApp extends Component {
       }),
       step: 1,
       score: 0,
+      clockCompletions: 0,
       modal: {
         state: 'hide',
         praise: '',
@@ -52,20 +53,23 @@ class QuizApp extends Component {
   {
     if(this.state.timerStep===this.state.step) {console.warn("Timer for step "+this.state.step+" already exists.");return;}
     console.debug("timer start for step "+this.state.step);
-    this.setState({timerStep: this.state.step, timerActive: true, timeUp: false});
-
-    setTimeout(()=>this.timerEnd(this.state.step),QUESTION_SECONDS*1000);
+    const id = setTimeout(()=>this.timerEnd(this.state.step),QUESTION_SECONDS*1000);
+    this.setState({timerStep: this.state.step, timeUp: false, timerId: id});
+    this.setState({clockCompletions : this.state.clockCompletions +1 });
   }
 
   timerCancel = () =>
   {
-    this.setState({timerActive: false, timeUp: false});
+    if(!this.state.timerId) {console.debug("no timer to cancel");return}
+    clearTimeout(this.state.timerId);
+    console.debug("timer cancel");
+    this.setState({timeUp: false, timerId: null});
   }
 
   timerEnd = (step) => {
-    if(!this.state.timerActive) {console.debug("timer cancelled for step "+step); return;}
-    if(step!==this.state.step) {console.warn("Outdated timer for step "+step+"cancelled.");return;}
-    this.setState({timerActive: false, timeUp: true});
+    if(!this.state.timerId) {console.debug("timer cancelled for step "+step); return;}
+    if(step!==this.state.step) {console.warn("outdated timer for step "+step+"cancelled.");return;}
+    this.setState({timeUp: true});
     console.log("time is up for step "+step);
     this.showTimeUpModal();
     setTimeout(this.nextStep, 2750);
@@ -208,6 +212,7 @@ class QuizApp extends Component {
     } else return (
       <Fragment>
         <Quiz
+          state={this.state}
           step={step}
           questions={questions}
           totalQuestions={totalQuestions}
