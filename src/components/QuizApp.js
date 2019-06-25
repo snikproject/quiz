@@ -7,6 +7,8 @@ import Results from './Results';
 import shuffle from '../helpers/shuffle';
 import QUESTION_DATA from '../data/quiz-data';
 
+const QUESTION_TIME_MS = 3000;
+
 class QuizApp extends Component {
   state = this.getInitialState(this.props.totalQuestions);
 
@@ -15,7 +17,7 @@ class QuizApp extends Component {
   };
 
   getInitialState(totalQuestions) {
-    for(let i=0;i<1;i++) setTimeout(()=>this.timeUp(),1000);
+    setTimeout(()=>this.timerStart(),100); // state not defined yet
     totalQuestions = Math.min(totalQuestions, QUESTION_DATA.length);
     const QUESTIONS = shuffle(QUESTION_DATA).slice(0, totalQuestions);
     for(const q of QUESTIONS)
@@ -46,13 +48,40 @@ class QuizApp extends Component {
     };
   }
 
-  handleAnswerClick = (index) => (e) => {
+  timerStart = () =>
+  {
+    if(this.state.timerStep===this.state.step) {console.warn("Timer for step "+this.state.step+" already exists.");return;}
+    console.debug("timer start for step "+this.state.step);
+    this.setState({timerStep: this.state.step, timerActive: true, timeUp: false});
+
+    setTimeout(()=>this.timerEnd(this.state.step),QUESTION_TIME_MS);
+  }
+
+  timerCancel = () =>
+  {
+    this.setState({timerActive: false, timeUp: false});
+  }
+
+  timerEnd = (step) => {
+    if(!this.state.timerActive) {console.debug("Timer Cancelled"); return;}
+    if(step!==this.state.step) {console.warn("Outdated timer for step "+step+"cancelled.");return;}
+    this.setState({timerActive: false, timeUp: true});
+    console.log("time is up for step "+step);
+    this.showTimeUpModal();
+    setTimeout(this.nextStep, 2750);
+  };
+
+  handleAnswerClick = (index) => (e) =>
+  {
     const { questions, step, userAnswers } = this.state;
+    if(this.state.timeUp) {console.warn("Handle Answer Click: Time is Up. Ignoring Input for Step "+step);return;} // prevent side effects from timer being shown while users answers
+
     const isCorrect = questions[0].correct === index;
     const currentStep = step - 1;
     const tries = userAnswers[currentStep].tries;
 
     if (isCorrect && e.target.nodeName === 'LI') {
+      this.timerCancel();
       // Prevent other answers from being clicked after correct answer is clicked
       e.target.parentNode.style.pointerEvents = 'none';
 
@@ -89,38 +118,6 @@ class QuizApp extends Component {
     if (e.keyCode === 13) {
       this.handleAnswerClick(index)(e);
     }
-  };
-
-
-  timeUp = () => {
-    console.log("Time Is Up");
-/*
-    const { questions, step, userAnswers } = this.state;
-    const currentStep = step - 1;
-    const tries = userAnswers[currentStep].tries;
-    */
-    setTimeout(() => this.showTimeUpModal(), 750);
-    setTimeout(this.nextStep, 2750);
-    /*
-
-    const isCorrect = questions[0].correct === index;
-    const currentStep = step - 1;
-
-    userAnswers[currentStep] = {
-        tries: tries + 1
-      };
-*/
-
-/*    const { questions, step, userAnswers } = this.state;
-    const currentStep = step - 1;
-    const tries = userAnswers[currentStep].tries;
-
-  //    e.target.classList.add('right');
-      setTimeout(() => this.showModal(tries), 750);
-
-  */
-  //this.nextStep();
-
   };
 
   showModal = (tries) => {
@@ -177,10 +174,10 @@ class QuizApp extends Component {
       step: step + 1,
       score: this.updateScore(tries, score),
       questions: restOfQuestions,
-      modal: {
-        state: 'hide'
-      }
+      modal: { state: 'hide' },
+      timeUpModal: { state: 'hide' }
     });
+    if(restOfQuestions.length>0) this.timerStart();
   };
 
   updateScore(tries, score) {
@@ -193,9 +190,8 @@ class QuizApp extends Component {
   }
 
   restartQuiz = () => {
-    this.setState({
-      ...this.getInitialState(this.props.totalQuestions)
-    });
+    this.setState(this.getInitialState(this.props.totalQuestions));
+    console.log("Restarted");
   };
 
   render() {
@@ -219,7 +215,8 @@ class QuizApp extends Component {
           handleAnswerClick={this.handleAnswerClick}
           handleEnterPress={this.handleEnterPress}
         />
-        { modal.state === 'show' && <Modal modal={modal} /> && <TimeUpModal timeUpModal={timeUpModal} /> }
+        { modal.state === 'show' && <Modal modal={modal} />}
+        { timeUpModal.state === 'show' && <TimeUpModal modal={timeUpModal} /> }
       </Fragment>
     );
   }
