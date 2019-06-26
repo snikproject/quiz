@@ -11,7 +11,7 @@ const Results = ({ userAnswers, score, restartQuiz }) => {
 
   setTimeout(()=>
   {
-  const URL = "https://script.google.com/macros/s/AKfycbxT6HmWp2uTDlkha6Lt7eizKOvGD56rU_ARSRnoOpv3XAK1ATQ/exec";
+  const URL = "https://script.google.com/macros/s/AKfycby1cMM4wAPJqdmAFy-lOIWIYiACdo23XnvJN0Xt/exec";
   const form = document.forms["submit-to-google"];
   form.addEventListener('submit', e => {
       e.preventDefault()
@@ -34,7 +34,6 @@ const Results = ({ userAnswers, score, restartQuiz }) => {
     name:
     <input type="text" name="name" />
     <input type="hidden" name="score" value={score} />
-    <input type="hidden" name="date" value={new Date().toISOString()} />
     <input type="submit" value="Submit Score"/>
     </form>
     </div>
