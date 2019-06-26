@@ -13,7 +13,8 @@ const Question = ({ question, answers, handleAnswerClick, handleEnterPress }) =>
         {answers.map((answer, index) => {
           return (
             <Answer
-              key={JSON.stringify(answer.props.children)}
+              //key={JSON.stringify(answer.props.children)}
+              key={index}
               answer={answer}
               handleAnswerClick={handleAnswerClick(index)}
               handleEnterPress={handleEnterPress(index)}

@@ -8,7 +8,9 @@ const QuestionList = ({ questions, handleAnswerClick, handleEnterPress }) => {
       {questions.map(question => {
         return (
           <Question
-            key={question.question.props.children.toString()}
+            key={question.question.props.children.toString()+JSON.stringify(question.answers.map(a=>a.props.children))} // questions aren't unique but key must be
+            //key={index++}
+            //key={Math.random()}
             question={question.question}
             answers={question.answers}
             handleAnswerClick={handleAnswerClick}

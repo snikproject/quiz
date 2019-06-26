@@ -70,7 +70,7 @@ class QuizApp extends Component {
     if(!this.state.timerId) {console.debug("timer cancelled for step "+step); return;}
     if(step!==this.state.step) {console.warn("outdated timer for step "+step+"cancelled.");return;}
     this.setState({timeUp: true});
-    console.log("time is up for step "+step);
+    console.debug("time is up for step "+step);
     this.showTimeUpModal();
     setTimeout(this.nextStep, 1500);
   };
@@ -83,7 +83,6 @@ class QuizApp extends Component {
     const isCorrect = questions[0].correct === index;
     const currentStep = step - 1;
     const tries = userAnswers[currentStep].tries;
-
     if (isCorrect && e.target.nodeName === 'LI') {
       this.timerCancel();
       // Prevent other answers from being clicked after correct answer is clicked
