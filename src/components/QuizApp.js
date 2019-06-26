@@ -72,7 +72,7 @@ class QuizApp extends Component {
     this.setState({timeUp: true});
     console.log("time is up for step "+step);
     this.showTimeUpModal();
-    setTimeout(this.nextStep, 2000);
+    setTimeout(this.nextStep, 1500);
   };
 
   handleAnswerClick = (index) => (e) =>
@@ -101,7 +101,7 @@ class QuizApp extends Component {
 
       setTimeout(() => this.showModal(tries), 750);
 
-      setTimeout(this.nextStep, 2000);
+      setTimeout(this.nextStep, 1500);
     }
 
     else if (e.target.nodeName === 'LI') {
