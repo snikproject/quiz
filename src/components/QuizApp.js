@@ -101,7 +101,7 @@ class QuizApp extends Component {
 
       setTimeout(() => this.showModal(tries), 750);
 
-      setTimeout(this.nextStep, 2750);
+      setTimeout(this.nextStep, 2000);
     }
 
     else if (e.target.nodeName === 'LI') {
