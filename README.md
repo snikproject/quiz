@@ -14,9 +14,11 @@ Requires `npm` and a Linux style command line with tools like `sed`.
 * Recreating the questions is a partially automated process.
 
 #### Process
+
+subject.sparql depends on the graph http://www.snik.eu/ontology/derived.
 For each template:
 
-1. Execute the SPARQL query in the `sparql` directory, for example [definition.sparql](sparql/definition.sparql).
+1. Execute the SPARQL query in the `sparql` directory, for example [definition.sparql](sparql/definition.sparql). You may need to disable "Strict checking of void variables" in the Virtuoso SPARQL Query Editor.
 2. Save the output as a tab separated values (TSV) file, such as `definition.tsv`.
 3. Use the transformation script to create a JavaScript  for example `./transform-definition < input > definition.js`
 4. The transformation file may not be correct, use a text editor with search and replace to create a syntactically correct JavaScript array.
