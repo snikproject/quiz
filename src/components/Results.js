@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import tally from '../helpers/tally';
 
@@ -9,6 +9,8 @@ const Results = ({ userAnswers, score, restartQuiz }) => {
   const threeTries = triesTotal[3] && <div><strong>{triesTotal[3]}</strong> on the third try.</div>;
   const fourTries = triesTotal[4] && <div><strong>{triesTotal[4]}</strong> on the fourth try.</div>;
 
+  const [enabled, setEnabled] = useState(true);
+
   setTimeout(()=>
   {
   const URL = "https://script.google.com/macros/s/AKfycby1cMM4wAPJqdmAFy-lOIWIYiACdo23XnvJN0Xt/exec";
@@ -16,11 +18,11 @@ const Results = ({ userAnswers, score, restartQuiz }) => {
   form.addEventListener('submit', e => {
       e.preventDefault()
       fetch(URL, { method: 'POST', body: new FormData(form)})
-        .then(response => console.log('Success!', response))
+        .then(response => {console.log('Success!', response);setEnabled(false);})
         .catch(error => console.error('Error!', error.message))
     })},100);
 
-  return (
+  const div =
     <div className="results-container">
     <h2>Quiz Results</h2>
     <div>You answered...</div>
@@ -34,10 +36,10 @@ const Results = ({ userAnswers, score, restartQuiz }) => {
     name:
     <input type="text" name="name" />
     <input type="hidden" name="score" value={score} />
-    <input type="submit" value="Submit Score"/>
+    <input disabled={!enabled} type="submit" value="Submit Score"/>
     </form>
-    </div>
-  );
+    </div>;
+  return div;
 
 }
 
