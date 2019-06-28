@@ -16,7 +16,13 @@ class QuizApp extends Component {
     totalQuestions: PropTypes.number.isRequired
   };
 
-  getInitialState(totalQuestions) {
+  componentDidMount()
+  {
+    document.addEventListener("keydown",this.handleKeyDown);
+  }
+
+  getInitialState(totalQuestions)
+  {
     setTimeout(()=>this.timerStart(),100); // state not defined yet
     totalQuestions = Math.min(totalQuestions, QUESTION_DATA.length);
     const QUESTIONS = shuffle(QUESTION_DATA).slice(0, totalQuestions);
@@ -31,7 +37,8 @@ class QuizApp extends Component {
       totalQuestions: totalQuestions,
       userAnswers: QUESTIONS.map(() => {
         return {
-          tries: 0
+          tries: 0,
+          tried: new Set()
         }
       }),
       step: 1,
@@ -117,11 +124,52 @@ class QuizApp extends Component {
     }
   };
 
+  handleAnswerPress = (index)=>
+  {
+    const { questions, step, userAnswers } = this.state;
+    if(this.state.timeUp) {console.warn("Handle Answer Press: Time is Up. Ignoring Input for Step "+step);return;} // prevent side effects from timer being shown while users answers
+
+    const currentStep = step - 1;
+    const tries = userAnswers[currentStep].tries;
+    const tried = userAnswers[currentStep].tried;
+
+    if(tried.has(index)) {console.debug("handleAnswerPress: Option "+index+" already tried.");return}
+    tried.add(index);
+
+    userAnswers[currentStep].tries++;
+    this.setState({userAnswers: userAnswers});
+
+    const isCorrect = questions[0].correct === index;
+    if (isCorrect)
+    {
+      this.timerCancel();
+      this.showModal(tries);
+      setTimeout(this.nextStep, 750);
+    }
+  }
+
   handleEnterPress = (index) => (e) => {
     if (e.keyCode === 13) {
       this.handleAnswerClick(index)(e);
     }
   };
+
+  handleKeyDown = (e) =>
+  {
+    switch(e.key)
+    {
+      case 'a':
+      case 'A': this.handleAnswerPress(0); break; // a, A
+      case 'b':
+      case 'B': this.handleAnswerPress(1); break; // b, B
+      case 'c':
+      case 'C': this.handleAnswerPress(2); break; // c, C
+      case 'd':
+      case 'D': this.handleAnswerPress(3); break; // d, D
+      default:
+    }
+
+  }
 
   showModal = (tries) => {
     let praise;
