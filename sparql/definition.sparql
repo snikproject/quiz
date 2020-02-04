@@ -12,8 +12,7 @@ SELECT SAMPLE(replace(str(?def),str(?cl),"X","i") as ?def) SAMPLE(str(?cl) as ?c
 
  owl:Class ^a ?a1,?a2,?a3.
  FILTER(?class!=?a1&&?class!=?a2&&?class!=?a3
- &&?a1<?a2&&?a1<?a3
- &&?a2<?a3)
+ &&?a1<?a2&&?a2<?a3)
 
 ?a1 rdfs:label ?a1l.
  FILTER(LANGMATCHES(LANG(?a1l),"en"))
