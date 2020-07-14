@@ -1,7 +1,7 @@
 # SNIK Quiz
 
 ## Usage
-Play at http://www.snik.eu/snik-quiz by clicking on the correct answer for each of the questions.
+Play at http://www.snik.eu/quiz by clicking on the correct answer for each of the questions.
 
 ## Development
 Requires `npm` and a Linux style command line with tools like `sed`.
