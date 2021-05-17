@@ -1,5 +1,7 @@
 # SNIK Quiz
 
+![SNIK Quiz screenshot](../../releases/download/0.2/snik-quiz.png)
+
 ## Usage
 Play at http://www.snik.eu/quiz by clicking on the correct answer for each of the questions.
 
