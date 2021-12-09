@@ -13,11 +13,12 @@ const Results = ({ userAnswers, score, restartQuiz }) => {
 
   setTimeout(()=>
   {
-  const URL = "https://script.google.com/macros/s/AKfycby1cMM4wAPJqdmAFy-lOIWIYiACdo23XnvJN0Xt/exec";
+  //const URL = "https://script.google.com/macros/s/AKfycby1cMM4wAPJqdmAFy-lOIWIYiACdo23XnvJN0Xt/exec";
+  const URL = "https://script.google.com/macros/s/AKfycbyk9fYzcIVugmaaXbpyXf2PjbqjGl1u0Y_NKMRC6KgAzS2zmS2J7mZgV7IG1_dDcyXj/exec";
   const form = document.forms["submit-to-google"];
   form.addEventListener('submit', e => {
       e.preventDefault()
-      fetch(URL, { method: 'POST', body: new FormData(form)})
+      fetch(URL, { method: 'POST', redirect: 'follow', body: new FormData(form)})
         .then(response => {console.log('Success!', response);setEnabled(false);})
         .catch(error => console.error('Error!', error.message))
     })},100);
@@ -36,6 +37,7 @@ const Results = ({ userAnswers, score, restartQuiz }) => {
     name:
     <input type="text" name="name" />
     <input type="hidden" name="score" value={score} />
+    <input type="hidden" name="userAnswers" value={JSON.stringify(userAnswers.map(x=>x.tries))} />
     <input disabled={!enabled} type="submit" value="Submit Score"/>
     </form>
     </div>;

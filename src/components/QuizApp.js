@@ -1,25 +1,19 @@
 import React, { Fragment, Component } from 'react';
-import PropTypes from 'prop-types';
 import Quiz from './Quiz';
 import Modal from './Modal';
 import TimeUpModal from './TimeUpModal';
 import Results from './Results';
 import shuffle from '../helpers/shuffle';
 import QUESTION_DATA from '../data/quiz-data';
-
-export const QUESTION_SECONDS = 30;
+import config from  '../config';
 
 class QuizApp extends Component {
-  state = this.getInitialState(this.props.totalQuestions);
+  state = this.getInitialState();
 
-  static propTypes = {
-    totalQuestions: PropTypes.number.isRequired
-  };
-
-  getInitialState(totalQuestions) {
-    setTimeout(()=>this.timerStart(),100); // state not defined yet
-    totalQuestions = Math.min(totalQuestions, QUESTION_DATA.length);
-    const QUESTIONS = shuffle(QUESTION_DATA).slice(0, totalQuestions);
+  getInitialState() {
+    if(config.QUESTION_SECONDS>0) setTimeout(()=>this.timerStart(),100); // state not defined yet
+    const questionCount = Math.min(config.MAX_QUESTION_COUNT, QUESTION_DATA.length);
+    const QUESTIONS = shuffle(QUESTION_DATA).slice(0, questionCount);
     for(const q of QUESTIONS)
     {
      const correctAnswer = q.answers[q.correct];
@@ -28,7 +22,7 @@ class QuizApp extends Component {
     }
     return {
       questions: QUESTIONS,
-      totalQuestions: totalQuestions,
+      questionCount: questionCount,
       userAnswers: QUESTIONS.map(() => {
         return {
           tries: 0
@@ -53,7 +47,7 @@ class QuizApp extends Component {
   {
     if(this.state.timerStep===this.state.step) {console.warn("Timer for step "+this.state.step+" already exists.");return;}
     console.debug("timer start for step "+this.state.step);
-    const id = setTimeout(()=>this.timerEnd(this.state.step),QUESTION_SECONDS*1000);
+    const id = setTimeout(()=>this.timerEnd(this.state.step),config.QUESTION_SECONDS*1000);
     this.setState({timerStep: this.state.step, timeUp: false, timerId: id});
     this.setState({clockCompletions : this.state.clockCompletions +1 });
   }
@@ -180,7 +174,7 @@ class QuizApp extends Component {
       modal: { state: 'hide' },
       timeUpModal: { state: 'hide' }
     });
-    if(restOfQuestions.length>0) this.timerStart();
+    if(restOfQuestions.length>0&&config.QUESTION_SECONDS>0) this.timerStart();
   };
 
   updateScore(tries, score) {
@@ -193,14 +187,14 @@ class QuizApp extends Component {
   }
 
   restartQuiz = () => {
-    this.setState(this.getInitialState(this.props.totalQuestions));
+    this.setState(this.getInitialState());
     console.log("Restarted");
   };
 
   render() {
-    const { step, questions, userAnswers, totalQuestions, score, modal, timeUpModal } = this.state;
+    const { step, questions, userAnswers, questionCount, score, modal, timeUpModal } = this.state;
 
-    if (step >= totalQuestions + 1) {
+    if (step >= questionCount + 1) {
       return (
         <Results
           score={score}
@@ -214,7 +208,7 @@ class QuizApp extends Component {
           state={this.state}
           step={step}
           questions={questions}
-          totalQuestions={totalQuestions}
+          questionCount={questionCount}
           score={score}
           handleAnswerClick={this.handleAnswerClick}
           handleEnterPress={this.handleEnterPress}
