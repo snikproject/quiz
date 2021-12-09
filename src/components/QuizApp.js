@@ -12,9 +12,12 @@ class QuizApp extends Component {
 
   getInitialState() {
     if(config.QUESTION_SECONDS>0) setTimeout(()=>this.timerStart(),100); // state not defined yet
-    const questionCount = Math.min(config.MAX_QUESTION_COUNT, QUESTION_DATA.length);
-    if(!config.DETERMINISTIC) shuffle(QUESTION_DATA);
-    const QUESTIONS = QUESTION_DATA.slice(0, questionCount);
+    const questionCount = config.MAX_QUESTION_COUNT===0?QUESTION_DATA.length : Math.min(config.MAX_QUESTION_COUNT, QUESTION_DATA.length);
+    console.log(config.MAX_QUESTION_COUNT,config.MAX_QUESTION_COUNT===0);
+    let QUESTIONS = QUESTION_DATA;
+    if(!config.DETERMINISTIC) shuffle(QUESTIONS);
+    console.log(questionCount);
+    QUESTIONS = QUESTIONS.slice(0, questionCount);
     for(const q of QUESTIONS)
     {
      const correctAnswer = q.answers[q.correct];
