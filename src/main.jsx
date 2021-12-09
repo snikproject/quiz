@@ -1,9 +1,9 @@
 import React from 'react';
-import { render } from 'react-dom';
+import ReactDOM from 'react-dom';
 import QuizApp from './components/QuizApp';
 import './style.css';
 
-render(
+ReactDOM.render(
   <QuizApp/>,
-  document.getElementById('app')
+  document.getElementById('root')
 );
