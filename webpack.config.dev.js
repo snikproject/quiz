@@ -1,8 +1,9 @@
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ESLintPlugin = require('eslint-webpack-plugin');
 
 module.exports = {
-	devtool: 'inline-module-source-map',
+	devtool: 'eval',
 	entry: [
 		'./src/main.js'
 	],
@@ -19,7 +20,6 @@ module.exports = {
 				exclude: /node_modules/,
 				use: [
           'babel-loader',
-          'eslint-loader',
         ]
       },
 			{
@@ -28,7 +28,7 @@ module.exports = {
 				use: ['babel-loader']
 			},
       {
-        test: /\.css$/,
+        test: /\.css$/i,
         use: [
           'style-loader',
           'css-loader'
@@ -40,10 +40,11 @@ module.exports = {
 		extensions: ['.js', '.jsx']
 	},
 	devServer: {
-		contentBase: './dist',
+		static: './dist',
 		hot: true
 	},
 	plugins: [
+		new ESLintPlugin(),
 		new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
       template: __dirname + '/src/index.html',

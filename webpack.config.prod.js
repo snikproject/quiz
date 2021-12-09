@@ -1,6 +1,6 @@
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const ESLintPlugin = require('eslint-webpack-plugin');
 
 module.exports = {
 	entry: './src/main.js',
@@ -15,17 +15,17 @@ module.exports = {
 				exclude: /node_modules/,
 				loader: 'babel-loader'
 			},
-      {
-        test: /\.css$/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: 'css-loader'
-       })
-      }
-		]
+			{
+				test: /\.css$/,
+				use: [
+				  'style-loader',
+				  'css-loader'
+				]
+			  }
+				]
 	},
 	plugins: [
-		new ExtractTextPlugin('style.css'),
+		new ESLintPlugin(),
 		new HtmlWebpackPlugin({
 			inject: true,
 			template: './src/index.html',
