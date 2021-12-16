@@ -4,7 +4,7 @@ module.exports = {
   plugins: ['react'],
 
   env: {
-    'browser': true
+    browser: true
   },
 
   parserOptions: {
@@ -17,16 +17,11 @@ module.exports = {
     }
   },
 
-  extends: [
-    'eslint:recommended',
-    'plugin:react/recommended',
-	 'plugin:react/jsx-runtime'
-  ],
+  extends: ['eslint:recommended', 'plugin:react/recommended', 'plugin:react/jsx-runtime'],
 
   settings: {
     react: {
-	  'version': 'detect'
-	}
+      version: 'detect'
+    }
   }
-
 };

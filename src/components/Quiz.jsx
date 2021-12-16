@@ -11,17 +11,20 @@ const Quiz = ({ step, questions, questionCount, score, handleAnswerClick, handle
         <div className="question-count">
           <h2>Question</h2>
           <div className="question-number">{step}</div>
-          <div className="description">of <span>{questionCount}</span></div>
+          <div className="description">
+            of <span>{questionCount}</span>
+          </div>
         </div>
         <div>
-        {config.QUESTION_SECONDS>0 &&
-        <ReactCountdownClock seconds={config.QUESTION_SECONDS}
-                   key={state.clockCompletions}
-                   color="#000"
-                   alpha={0.9}
-                   size={180}
-                    />
-        }
+          {config.QUESTION_SECONDS > 0 && (
+            <ReactCountdownClock
+              seconds={config.QUESTION_SECONDS}
+              key={state.clockCompletions}
+              color="#000"
+              alpha={0.9}
+              size={180}
+            />
+          )}
         </div>
         <h1>SNIK Quiz</h1>
         <div className="score-container">
@@ -32,15 +35,11 @@ const Quiz = ({ step, questions, questionCount, score, handleAnswerClick, handle
       </header>
 
       <div className="questions">
-        <QuestionList
-          questions={questions}
-          handleAnswerClick={handleAnswerClick}
-          handleEnterPress={handleEnterPress}
-        />
+        <QuestionList questions={questions} handleAnswerClick={handleAnswerClick} handleEnterPress={handleEnterPress} />
       </div>
     </div>
   );
-}
+};
 
 Quiz.propTypes = {
   state: PropTypes.object.isRequired,
