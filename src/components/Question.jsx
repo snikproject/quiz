@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Answer from './Answer';
+import Evaluation from './Evaluation';
 
 const Question = ({ question, answers, handleAnswerClick, handleEnterPress }) => {
   return (
@@ -21,6 +22,7 @@ const Question = ({ question, answers, handleAnswerClick, handleEnterPress }) =>
           );
         })}
       </ul>
+      <Evaluation></Evaluation>
     </li>
   );
 };
