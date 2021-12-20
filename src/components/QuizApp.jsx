@@ -1,4 +1,4 @@
-import React, { Fragment, Component } from 'react';
+import { Fragment, Component } from 'react';
 import Quiz from './Quiz';
 import Modal from './Modal';
 import TimeUpModal from './TimeUpModal';
@@ -16,10 +16,8 @@ class QuizApp extends Component {
       config.MAX_QUESTION_COUNT === 0
         ? QUESTION_DATA.length
         : Math.min(config.MAX_QUESTION_COUNT, QUESTION_DATA.length);
-    console.log(config.MAX_QUESTION_COUNT, config.MAX_QUESTION_COUNT === 0);
     let QUESTIONS = QUESTION_DATA;
     if (!config.DETERMINISTIC) shuffle(QUESTIONS);
-    console.log(questionCount);
     QUESTIONS = QUESTIONS.slice(0, questionCount);
     for (const q of QUESTIONS) {
       const correctAnswer = q.answers[q.correct];

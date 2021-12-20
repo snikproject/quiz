@@ -3,6 +3,11 @@ import PropTypes from 'prop-types';
 import Answer from './Answer';
 import Evaluation from './Evaluation';
 
+function handleSubmit(x) {
+  console.log(x);
+  return false;
+}
+
 const Question = ({ question, answers, handleAnswerClick, handleEnterPress }) => {
   return (
     <li className="question">
@@ -22,7 +27,7 @@ const Question = ({ question, answers, handleAnswerClick, handleEnterPress }) =>
           );
         })}
       </ul>
-      <Evaluation></Evaluation>
+      <Evaluation handleSubmit={handleSubmit}></Evaluation>
     </li>
   );
 };
