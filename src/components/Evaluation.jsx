@@ -2,30 +2,32 @@
  * See <https://medium.com/swlh/building-controlled-forms-using-functional-components-in-react-965d033a89bd>. */
 
 import PropTypes from 'prop-types';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
-const Evaluation = ({}) => {
-  const [inputValues, setInputValues] = useState({});
+const EvaluationBox = ({ name, content, handleChange }) => {
+  const [checked, setChecked] = useState(false);
 
-  const handleChange = ({ target: { name, value } }) => {
-    setInputValues({
-      ...inputValues,
-      [name]: value
-    });
-    console.log(name, value);
-    console.log(inputValues);
+  const boxHandleChange = (event) => {
+    handleChange({ target: { name, value: !checked } });
+    setChecked(!checked);
   };
 
-  const EvaluationBox = ({ name, content }) => {
-    //const [checked, setChecked] = useState(false);
-    return (
-      <li className="evaluation-problem">
-        <label>
-          <input type="checkbox" name={name} onChange={handleChange} />
-          {content}
-        </label>
-      </li>
-    );
+  return (
+    <li className="evaluation-problem">
+      <label>
+        <input type="checkbox" name={name} onChange={boxHandleChange} checked={checked} />
+        {content}
+      </label>
+    </li>
+  );
+};
+
+const Evaluation = ({ handleEvalChange }) => {
+  const [inputValues, setInputValues] = useState({});
+  useEffect(() => handleEvalChange(inputValues), [inputValues]);
+
+  const handleChange = ({ target: { name, value } }) => {
+    setInputValues({ ...inputValues, [name]: value });
   };
 
   return (
@@ -33,15 +35,18 @@ const Evaluation = ({}) => {
       <h3>Probleme melden</h3>
       <ul>
         <form>
-          <EvaluationBox name="correct-wrong" content="Die korrekt markierte Antwort ist tatsächlich falsch." />
-          <EvaluationBox name="incorrect-right" content="Eine falsch markierte Antwort ist tatsächlich richtig." />
-          <EvaluationBox name="incomprehensible" content="Die Frage ist unverständlich." />
-          <EvaluationBox name="contains-answer" content="Die Frage enthält die Antwort." />
-          <EvaluationBox name="grammar" content="Die Frage ist grammatikalisch falsch." />
-          <EvaluationBox name="ontology" content="Wahrscheinlich liegt ein Fehler in der SNIK Ontologie zugrunde." />
-          <EvaluationBox name="artificial" content="Die Frage klingt künstlich." />
-          <EvaluationBox name="undidactic" content="Die Frage ist didaktisch nicht sinnvoll." />
+          <EvaluationBox handleChange={handleChange} name="correct-wrong" content="Die korrekt markierte Antwort ist tatsächlich falsch." />
+          <EvaluationBox handleChange={handleChange} name="incorrect-right" content="Eine falsch markierte Antwort ist tatsächlich richtig." />
+          <EvaluationBox handleChange={handleChange} name="incomprehensible" content="Die Frage ist unverständlich." />
+          <EvaluationBox handleChange={handleChange} name="contains-answer" content="Die Frage enthält die Antwort." />
+          <EvaluationBox handleChange={handleChange} name="grammar" content="Die Frage ist grammatikalisch falsch." />
+          <EvaluationBox handleChange={handleChange} name="ontology" content="Wahrscheinlich liegt ein Fehler in der SNIK Ontologie zugrunde." />
+          <EvaluationBox handleChange={handleChange} name="artificial" content="Die Frage klingt künstlich." />
+          <EvaluationBox handleChange={handleChange} name="undidactic" content="Die Frage ist didaktisch nicht sinnvoll." />
           <textarea className="evaluation-area" name="evaluation-area" onChange={handleChange}></textarea>
+          <button type="button" disabled="true">
+            Weiter
+          </button>
         </form>
       </ul>
     </div>

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import tally from '../helpers/tally';
 
-const Results = ({ userAnswers, score, restartQuiz }) => {
+const Results = ({ userAnswers, userEvals, score, restartQuiz }) => {
   const triesTotal = tally(userAnswers);
   const oneTry = triesTotal[1] && (
     <div>
@@ -29,8 +29,7 @@ const Results = ({ userAnswers, score, restartQuiz }) => {
 
   setTimeout(() => {
     //const URL = "https://script.google.com/macros/s/AKfycby1cMM4wAPJqdmAFy-lOIWIYiACdo23XnvJN0Xt/exec";
-    const URL =
-      'https://script.google.com/macros/s/AKfycbyk9fYzcIVugmaaXbpyXf2PjbqjGl1u0Y_NKMRC6KgAzS2zmS2J7mZgV7IG1_dDcyXj/exec';
+    const URL = 'https://script.google.com/macros/s/AKfycbyk9fYzcIVugmaaXbpyXf2PjbqjGl1u0Y_NKMRC6KgAzS2zmS2J7mZgV7IG1_dDcyXj/exec';
     const form = document.forms['submit-to-google'];
     form.addEventListener('submit', (e) => {
       e.preventDefault();
@@ -60,6 +59,7 @@ const Results = ({ userAnswers, score, restartQuiz }) => {
         <input type="text" name="name" />
         <input type="hidden" name="score" value={score} />
         <input type="hidden" name="userAnswers" value={JSON.stringify(userAnswers.map((x) => x.tries))} />
+        <input type="hidden" name="userEval" value={JSON.stringify(userEvals)} />
         <input disabled={!enabled} type="submit" value="Submit Score" />
       </form>
     </div>

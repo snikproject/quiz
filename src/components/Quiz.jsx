@@ -4,7 +4,7 @@ import QuestionList from './QuestionList';
 import ReactCountdownClock from 'react-countdown-clock';
 import config from '../config';
 
-const Quiz = ({ step, questions, questionCount, score, handleAnswerClick, handleEnterPress, state }) => {
+const Quiz = ({ step, questions, questionCount, score, handleAnswerClick, handleEnterPress, handleEvalChange, state }) => {
   return (
     <div className="wrapper">
       <header>
@@ -17,13 +17,7 @@ const Quiz = ({ step, questions, questionCount, score, handleAnswerClick, handle
         </div>
         <div>
           {config.QUESTION_SECONDS > 0 && (
-            <ReactCountdownClock
-              seconds={config.QUESTION_SECONDS}
-              key={state.clockCompletions}
-              color="#000"
-              alpha={0.9}
-              size={180}
-            />
+            <ReactCountdownClock seconds={config.QUESTION_SECONDS} key={state.clockCompletions} color="#000" alpha={0.9} size={180} />
           )}
         </div>
         <h1>SNIK Quiz</h1>
@@ -35,7 +29,7 @@ const Quiz = ({ step, questions, questionCount, score, handleAnswerClick, handle
       </header>
 
       <div className="questions">
-        <QuestionList questions={questions} handleAnswerClick={handleAnswerClick} handleEnterPress={handleEnterPress} />
+        <QuestionList questions={questions} handleAnswerClick={handleAnswerClick} handleEnterPress={handleEnterPress} handleEvalChange={handleEvalChange} />
       </div>
     </div>
   );

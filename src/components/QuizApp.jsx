@@ -12,10 +12,7 @@ class QuizApp extends Component {
 
   getInitialState() {
     if (config.QUESTION_SECONDS > 0) setTimeout(() => this.timerStart(), 100); // state not defined yet
-    const questionCount =
-      config.MAX_QUESTION_COUNT === 0
-        ? QUESTION_DATA.length
-        : Math.min(config.MAX_QUESTION_COUNT, QUESTION_DATA.length);
+    const questionCount = config.MAX_QUESTION_COUNT === 0 ? QUESTION_DATA.length : Math.min(config.MAX_QUESTION_COUNT, QUESTION_DATA.length);
     let QUESTIONS = QUESTION_DATA;
     if (!config.DETERMINISTIC) shuffle(QUESTIONS);
     QUESTIONS = QUESTIONS.slice(0, questionCount);
@@ -32,6 +29,7 @@ class QuizApp extends Component {
           tries: 0
         };
       }),
+      userEvals: QUESTIONS.map(() => ({})),
       step: 1,
       score: 0,
       clockCompletions: 0,
@@ -99,28 +97,20 @@ class QuizApp extends Component {
 
       e.target.classList.add('right');
 
-      userAnswers[currentStep] = {
-        tries: tries + 1
-      };
+      userAnswers[currentStep].tries += 1;
 
-      this.setState({
-        userAnswers: userAnswers
-      });
+      this.setState({ userAnswers: userAnswers });
 
-      setTimeout(() => this.showModal(tries), 750);
+      setTimeout(() => this.showModal(tries), 200);
 
-      setTimeout(this.nextStep, 1500);
+      setTimeout(this.nextStep, config.DELAY_MS);
     } else if (e.target.nodeName === 'LI') {
       e.target.style.pointerEvents = 'none';
       e.target.classList.add('wrong');
 
-      userAnswers[currentStep] = {
-        tries: tries + 1
-      };
+      userAnswers[currentStep].tries += 1;
 
-      this.setState({
-        userAnswers: userAnswers
-      });
+      this.setState({ userAnswers: userAnswers });
     }
   };
 
@@ -128,6 +118,14 @@ class QuizApp extends Component {
     if (e.keyCode === 13) {
       this.handleAnswerClick(index)(e);
     }
+  };
+
+  handleEvalChange = (inputValues) => {
+    const { questions, step, userEvals } = this.state;
+    const currentStep = step - 1;
+    userEvals[currentStep] = inputValues;
+
+    this.setState({ userEvals: userEvals });
   };
 
   showModal = (tries) => {
@@ -208,10 +206,10 @@ class QuizApp extends Component {
   };
 
   render() {
-    const { step, questions, userAnswers, questionCount, score, modal, timeUpModal } = this.state;
+    const { step, questions, userAnswers, userEvals, questionCount, score, modal, timeUpModal } = this.state;
 
     if (step >= questionCount + 1) {
-      return <Results score={score} restartQuiz={this.restartQuiz} userAnswers={userAnswers} />;
+      return <Results score={score} restartQuiz={this.restartQuiz} userAnswers={userAnswers} userEvals={userEvals} />;
     } else
       return (
         <Fragment>
@@ -223,6 +221,7 @@ class QuizApp extends Component {
             score={score}
             handleAnswerClick={this.handleAnswerClick}
             handleEnterPress={this.handleEnterPress}
+            handleEvalChange={this.handleEvalChange}
           />
           {modal.state === 'show' && <Modal modal={modal} />}
           {timeUpModal.state === 'show' && <TimeUpModal modal={timeUpModal} />}
