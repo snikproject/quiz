@@ -37,11 +37,15 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-top: 20px;
+  padding-top: 0.5em;
 }
 
 ul {
   padding: 0;
+}
+
+.evaluation-list {
+  columns: 2;
 }
 
 p {
@@ -91,7 +95,7 @@ code {
 }
 
 .question {
-  font-size: 2em;
+  font-size: 1.8em;
 }
 
 .question-answers {
@@ -113,6 +117,7 @@ code {
   padding: 0.3em;
   margin-bottom: 0.3em;
   border: 5px solid transparent;
+  font-size: 0.8em;
 }
 
 .evaluation-area {
@@ -291,7 +296,7 @@ code {
   }
 
   header {
-    padding: 50px 0 30px;
+    padding: 1em 0 0.5em;
   }
 
   .questions {

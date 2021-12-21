@@ -3,6 +3,7 @@
 
 import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
+import config from '../config';
 
 const EvaluationBox = ({ name, content, handleChange }) => {
   const [checked, setChecked] = useState(false);
@@ -22,7 +23,7 @@ const EvaluationBox = ({ name, content, handleChange }) => {
   );
 };
 
-const Evaluation = ({ handleEvalChange }) => {
+const Evaluation = ({ handleEvalChange, handleNext }) => {
   const [inputValues, setInputValues] = useState({});
   useEffect(() => handleEvalChange(inputValues), [inputValues]);
 
@@ -32,8 +33,8 @@ const Evaluation = ({ handleEvalChange }) => {
 
   return (
     <div>
-      <h3>Probleme melden</h3>
-      <ul>
+      <h4>Probleme melden</h4>
+      <ul className="evaluation-list">
         <form>
           <EvaluationBox handleChange={handleChange} name="correct-wrong" content="Die korrekt markierte Antwort ist tatsächlich falsch." />
           <EvaluationBox handleChange={handleChange} name="incorrect-right" content="Eine falsch markierte Antwort ist tatsächlich richtig." />
@@ -44,9 +45,11 @@ const Evaluation = ({ handleEvalChange }) => {
           <EvaluationBox handleChange={handleChange} name="artificial" content="Die Frage klingt künstlich." />
           <EvaluationBox handleChange={handleChange} name="undidactic" content="Die Frage ist didaktisch nicht sinnvoll." />
           <textarea className="evaluation-area" name="evaluation-area" onChange={handleChange}></textarea>
-          <button type="button" disabled="true">
-            Weiter
-          </button>
+          {config.WAIT && (
+            <button type="button" onClick={handleNext}>
+              Weiter
+            </button>
+          )}
         </form>
       </ul>
     </div>

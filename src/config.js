@@ -5,6 +5,7 @@ const config = {
   // 0 is unlimited
   QUESTION_SECONDS: parseInt(queryParams.get('time') ?? '60', 10),
   DELAY_MS: parseInt(queryParams.get('delay') ?? '1200', 10),
-  DETERMINISTIC: queryParams.has('deterministic')
+  DETERMINISTIC: queryParams.has('deterministic'),
+  WAIT: queryParams.has('wait')
 };
 export default config;

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Question from './Question';
 
-const QuestionList = ({ questions, handleAnswerClick, handleEnterPress, handleEvalChange }) => {
+const QuestionList = ({ questions, handleAnswerClick, handleEnterPress, handleEvalChange, handleNext }) => {
   return (
     <ul className="question-list">
       {questions.map((question) => {
@@ -16,6 +16,7 @@ const QuestionList = ({ questions, handleAnswerClick, handleEnterPress, handleEv
             handleAnswerClick={handleAnswerClick}
             handleEnterPress={handleEnterPress}
             handleEvalChange={handleEvalChange}
+            handleNext={handleNext}
           />
         );
       })}
@@ -26,7 +27,9 @@ const QuestionList = ({ questions, handleAnswerClick, handleEnterPress, handleEv
 QuestionList.propTypes = {
   questions: PropTypes.array.isRequired,
   handleAnswerClick: PropTypes.func.isRequired,
-  handleEnterPress: PropTypes.func.isRequired
+  handleEnterPress: PropTypes.func.isRequired,
+  handleEvalChange: PropTypes.func.isRequired,
+  handleNext: PropTypes.func.isRequired
 };
 
 export default QuestionList;

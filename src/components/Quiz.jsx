@@ -4,7 +4,7 @@ import QuestionList from './QuestionList';
 import ReactCountdownClock from 'react-countdown-clock';
 import config from '../config';
 
-const Quiz = ({ step, questions, questionCount, score, handleAnswerClick, handleEnterPress, handleEvalChange, state }) => {
+const Quiz = ({ step, questions, questionCount, score, handleAnswerClick, handleEnterPress, handleEvalChange, handleNext, state }) => {
   return (
     <div className="wrapper">
       <header>
@@ -29,7 +29,13 @@ const Quiz = ({ step, questions, questionCount, score, handleAnswerClick, handle
       </header>
 
       <div className="questions">
-        <QuestionList questions={questions} handleAnswerClick={handleAnswerClick} handleEnterPress={handleEnterPress} handleEvalChange={handleEvalChange} />
+        <QuestionList
+          questions={questions}
+          handleAnswerClick={handleAnswerClick}
+          handleEnterPress={handleEnterPress}
+          handleEvalChange={handleEvalChange}
+          handleNext={handleNext}
+        />
       </div>
     </div>
   );
@@ -42,7 +48,9 @@ Quiz.propTypes = {
   questionCount: PropTypes.number.isRequired,
   score: PropTypes.number.isRequired,
   handleAnswerClick: PropTypes.func.isRequired,
-  handleEnterPress: PropTypes.func.isRequired
+  handleEnterPress: PropTypes.func.isRequired,
+  handleEvalChange: PropTypes.func.isRequired,
+  handleNext: PropTypes.func.isRequired
 };
 
 export default Quiz;

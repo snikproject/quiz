@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Answer from './Answer';
 import Evaluation from './Evaluation';
 
-const Question = ({ question, answers, handleAnswerClick, handleEnterPress, handleEvalChange }) => {
+const Question = ({ question, answers, handleAnswerClick, handleEnterPress, handleEvalChange, handleNext }) => {
   return (
     <li className="question">
       <h2 className="question-title" tabIndex="0">
@@ -22,7 +22,7 @@ const Question = ({ question, answers, handleAnswerClick, handleEnterPress, hand
           );
         })}
       </ul>
-      <Evaluation handleEvalChange={handleEvalChange}></Evaluation>
+      <Evaluation handleEvalChange={handleEvalChange} handleNext={handleNext}></Evaluation>
     </li>
   );
 };
@@ -31,7 +31,9 @@ Question.propTypes = {
   question: PropTypes.element.isRequired,
   answers: PropTypes.array.isRequired,
   handleAnswerClick: PropTypes.func.isRequired,
-  handleEnterPress: PropTypes.func.isRequired
+  handleEnterPress: PropTypes.func.isRequired,
+  handleEvalChange: PropTypes.func.isRequired,
+  handleNext: PropTypes.func.isRequired
 };
 
 export default Question;

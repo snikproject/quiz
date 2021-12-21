@@ -102,8 +102,9 @@ class QuizApp extends Component {
       this.setState({ userAnswers: userAnswers });
 
       setTimeout(() => this.showModal(tries), 200);
+      setTimeout(() => this.setState({ modal: { state: 'hide' } }), 2000);
 
-      setTimeout(this.nextStep, config.DELAY_MS);
+      if (!config.WAIT) setTimeout(this.nextStep, config.DELAY_MS);
     } else if (e.target.nodeName === 'LI') {
       e.target.style.pointerEvents = 'none';
       e.target.classList.add('wrong');
@@ -222,6 +223,7 @@ class QuizApp extends Component {
             handleAnswerClick={this.handleAnswerClick}
             handleEnterPress={this.handleEnterPress}
             handleEvalChange={this.handleEvalChange}
+            handleNext={this.nextStep}
           />
           {modal.state === 'show' && <Modal modal={modal} />}
           {timeUpModal.state === 'show' && <TimeUpModal modal={timeUpModal} />}
