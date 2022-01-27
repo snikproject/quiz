@@ -1,0 +1,25 @@
+SELECT (STR(?al) AS ?al) (STR(?cd) AS ?cd) (SAMPLE(STR(?d1d)) AS ?d1d) (SAMPLE(STR(?d2d)) AS ?d2d) (SAMPLE(STR(?d3d)) AS ?d3d)
+WHERE {
+?a a owl:Class .   
+?a rdfs:label ?al .
+FILTER(langMatches(LANG(?al), "en" ))
+?a skos:definition ?cd .
+FILTER(langMatches(LANG(?cd), "en" ))
+?a (!(meta:subTopClass | meta:chapter)){1,2} ?d1,?d2,?d3 .
+# same type
+?subtop ^meta:subTopClass ?a,?d1,?d2,?d3.
+FILTER(?subtop=meta:Function)
+# prevent duplicates
+FILTER(?a!=?d1&&?a!=?d2&&?a!=?d3&&?d1<?d2&&?d2<?d3)
+
+?d1 skos:definition ?d1d .
+?d2 skos:definition ?d2d .
+?d3 skos:definition ?d3d .
+FILTER(langMatches(LANG(?d1d), "en" ))
+FILTER(langMatches(LANG(?d2d), "en" ))
+FILTER(langMatches(LANG(?d3d), "en" ))
+FILTER(STRLEN(?cd)<310)  
+FILTER(STRLEN(?d1d)<310) 
+FILTER(STRLEN(?d2d)<310) 
+FILTER(STRLEN(?d3d)<310) 
+} LIMIT 100
