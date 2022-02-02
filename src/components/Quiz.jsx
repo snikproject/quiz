@@ -21,6 +21,7 @@ const Quiz = ({ step, questions, questionCount, score, handleAnswerClick, handle
           )}
         </div>
         <h1>SNIK Quiz</h1>
+        Examples of old and new questions
         <div className="score-container">
           <h2>Score</h2>
           <div className="score">{score}</div>

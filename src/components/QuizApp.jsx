@@ -4,7 +4,7 @@ import Modal from './Modal';
 import TimeUpModal from './TimeUpModal';
 import Results from './Results';
 import shuffle from '../helpers/shuffle';
-import QUESTION_DATA from '../data/quiz-data';
+import QUESTION_DATA from '../data/quiz-data-new';
 import config from '../config';
 
 class QuizApp extends Component {
