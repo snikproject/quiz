@@ -33,21 +33,21 @@ const Evaluation = ({ handleEvalChange, handleNext }) => {
 
   return (
     <div>
-      <h4>Probleme melden</h4>
+      <h4>Report Problem</h4>
       <ul className="evaluation-list">
         <form>
-          <EvaluationBox handleChange={handleChange} name="correct-wrong" content="Die korrekt markierte Antwort ist tatsächlich falsch." />
-          <EvaluationBox handleChange={handleChange} name="incorrect-right" content="Eine falsch markierte Antwort ist tatsächlich richtig." />
-          <EvaluationBox handleChange={handleChange} name="incomprehensible" content="Die Frage ist unverständlich." />
-          <EvaluationBox handleChange={handleChange} name="contains-answer" content="Die Frage enthält die Antwort." />
-          <EvaluationBox handleChange={handleChange} name="grammar" content="Die Frage ist grammatikalisch falsch." />
-          <EvaluationBox handleChange={handleChange} name="ontology" content="Wahrscheinlich liegt ein Fehler in der SNIK Ontologie zugrunde." />
-          <EvaluationBox handleChange={handleChange} name="artificial" content="Die Frage klingt künstlich." />
-          <EvaluationBox handleChange={handleChange} name="undidactic" content="Die Frage ist didaktisch nicht sinnvoll." />
+          <EvaluationBox handleChange={handleChange} name="correct-wrong" content="The correctly marked answer is actually wrong." />
+          <EvaluationBox handleChange={handleChange} name="incorrect-right" content="An incorrectly marked answer is actually correct." />
+          <EvaluationBox handleChange={handleChange} name="incomprehensible" content="The question is incomprehensible." />
+          <EvaluationBox handleChange={handleChange} name="contains-answer" content="The question contains the answer." />
+          <EvaluationBox handleChange={handleChange} name="grammar" content="The question is grammatically incorrect." />
+          <EvaluationBox handleChange={handleChange} name="ontology" content="There is an error in the SNIK ontology." />
+          <EvaluationBox handleChange={handleChange} name="artificial" content="The question sounds artificial." />
+          <EvaluationBox handleChange={handleChange} name="undidactic" content="The question is not didactically useful." />
           <textarea className="evaluation-area" name="evaluation-area" onChange={handleChange}></textarea>
           {config.WAIT && (
             <button type="button" onClick={handleNext}>
-              Weiter
+              Continue
             </button>
           )}
         </form>
