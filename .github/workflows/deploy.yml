@@ -21,7 +21,7 @@ jobs:
 
       - name: Install and build
         run: |
-          npm install
+          npm install --only=prod
           npm run build
           sed -i "s|/assets|./assets|" dist/index.html
 
