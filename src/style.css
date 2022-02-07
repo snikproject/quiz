@@ -258,7 +258,7 @@ code {
 }
 
 @keyframes modal-enter {
-  0 {
+  0% {
     visibility: visible;
     opacity: 1;
   }
