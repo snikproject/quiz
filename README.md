@@ -1,5 +1,8 @@
 # SNIK Quiz
 
+![build](https://github.com/snikproject/snik-graph/actions/workflows/build.yml/badge.svg)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+
 ![SNIK Quiz screenshot](../../releases/download/0.2/snik-quiz.png)
 
 ## Usage
@@ -43,4 +46,5 @@ Create the files as required by the process.
     ./deploy
 
 ### License
-Almost all the code is from https://github.com/davidrayoussef/react-quiz so we just supply the LICENSE file of that project. With our additional code you can do whatever you want. The question data is probably in the same category as https://github.com/IMISE/snik.
+SNIK Quiz uses the MIT license like <https://github.com/davidrayoussef/react-quiz>, which this is a fork of with minimal modifications.
+The main contribution of SNIK Quiz is the question data, not the user interface.
