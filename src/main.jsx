@@ -1,5 +1,6 @@
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import QuizApp from './components/QuizApp';
 import './style.css';
 
-ReactDOM.render(<QuizApp />, document.getElementById('root'));
+const root = createRoot(document.getElementById('root'));
+root.render(<QuizApp />);
