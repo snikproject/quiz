@@ -38,7 +38,7 @@ At the end, use the existing [quiz-data.js](src/data/quiz-data.js) to get the he
 Create the files as required by the process.
 
 ### Run Locally
-`npm start`
+`npm run dev`
 
 ### Deploy to GitHub Pages
 
