@@ -1,6 +1,6 @@
 {
-  "name": "react-quiz",
-  "version": "0.2.0",
+  "name": "snik-quiz",
+  "version": "22.10",
   "description": "SNIK Multiple Choice Quiz.",
   "main": "main.jsx",
   "scripts": {
