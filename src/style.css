@@ -90,7 +90,7 @@ code {
 }
 
 .questions {
-  width: 85%;
+  width: 95%;
   margin: 35px auto 0;
 }
 
@@ -288,7 +288,7 @@ code {
 
 @media (min-width: 900px) {
   body {
-    font-size: 14px;
+    font-size: 13px;
   }
 
   h1 {
@@ -297,10 +297,6 @@ code {
 
   header {
     padding: 1em 0 0.5em;
-  }
-
-  .questions {
-    width: 75%;
   }
 
   .question-answer:hover {
@@ -316,7 +312,7 @@ code {
   }
 }
 
-@media (min-width: 1400px) {
+@media (min-width: 1400px) and (min-height: 1100px) {
   body {
     font-size: 16px;
   }
@@ -324,9 +320,11 @@ code {
   .correct-modal {
     height: 400px;
   }
-}
 
-@media (min-width: 1600px) {
+  .questions {
+    width: 75%;
+  }
+
   body {
     overflow: hidden;
   }
