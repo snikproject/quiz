@@ -17,7 +17,7 @@ const Quiz = ({ step, questions, questionCount, score, handleAnswerClick, handle
         </div>
         <div>
           {config.QUESTION_SECONDS > 0 && (
-            <ReactCountdownClock seconds={config.QUESTION_SECONDS} key={state.clockCompletions} color="#000" alpha={0.9} size={180} />
+            <Countdown seconds={config.QUESTION_SECONDS} key={state.clockCompletions} color="#000" alpha={0.9} size={180} />
           )}
         </div>
         <h1>SNIK Quiz</h1>
