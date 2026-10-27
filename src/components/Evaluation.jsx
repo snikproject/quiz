@@ -2,7 +2,7 @@
  * See <https://medium.com/swlh/building-controlled-forms-using-functional-components-in-react-965d033a89bd>. */
 
 import PropTypes from 'prop-types';
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import config from '../config';
 
 const EvaluationBox = ({ name, content, handleChange }) => {

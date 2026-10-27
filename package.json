@@ -17,12 +17,7 @@
   "devDependencies": {
     "@biomejs/biome": "^2.6.3"
   },
-  "keywords": [
-    "react",
-    "quiz",
-    "test",
-    "react-component"
-  ],
+  "keywords": ["react", "quiz", "test", "react-component"],
   "dependencies": {
     "@vitejs/plugin-legacy": "^8.2.3",
     "@vitejs/plugin-react": "^6.1.2",

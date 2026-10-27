@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
-import QuestionList from './QuestionList';
 import ReactCountdownClock from 'react-countdown-clock';
 import config from '../config';
+import QuestionList from './QuestionList';
 
 const Quiz = ({ step, questions, questionCount, score, handleAnswerClick, handleEnterPress, handleEvalChange, handleNext, state }) => {
   return (
