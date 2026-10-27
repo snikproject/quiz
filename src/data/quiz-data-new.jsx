@@ -1,3 +1,5 @@
+/* eslint-disable react/jsx-key */
+// we could refactor this file to contain just strings instead of UI elements and refactor it's usage accordingly so we don't need the eslint-disable anymore
 import React from 'react';
 
 const QUESTION_DATA = [
