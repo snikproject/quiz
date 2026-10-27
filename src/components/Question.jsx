@@ -7,7 +7,7 @@ const Question = ({ question, answers, handleAnswerClick, handleEnterPress, hand
   return (
     <li className="question">
       <h2 className="question-title" tabIndex="0">
-        {question}
+        <span>{question}</span>
       </h2>
       <ul className="question-answers" tabIndex="-1">
         {answers.map((answer, index) => {
@@ -28,7 +28,7 @@ const Question = ({ question, answers, handleAnswerClick, handleEnterPress, hand
 };
 
 Question.propTypes = {
-  question: PropTypes.element.isRequired,
+  question: PropTypes.string.isRequired,
   answers: PropTypes.array.isRequired,
   handleAnswerClick: PropTypes.func.isRequired,
   handleEnterPress: PropTypes.func.isRequired,
