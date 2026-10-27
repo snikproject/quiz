@@ -1,5 +1,5 @@
-import { useState } from 'react';
 import PropTypes from 'prop-types';
+import { useState } from 'react';
 import tally from '../helpers/tally';
 
 const Results = ({ userAnswers, userEvals, score, restartQuiz }) => {
@@ -33,7 +33,11 @@ const Results = ({ userAnswers, userEvals, score, restartQuiz }) => {
     const form = document.forms['submit-to-google'];
     form.addEventListener('submit', (e) => {
       e.preventDefault();
-      fetch(URL, { method: 'POST', redirect: 'follow', body: new FormData(form) })
+      fetch(URL, {
+        method: 'POST',
+        redirect: 'follow',
+        body: new FormData(form)
+      })
         .then((response) => {
           console.log('Success!', response);
           setEnabled(false);

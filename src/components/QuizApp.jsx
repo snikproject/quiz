@@ -1,11 +1,11 @@
-import { Fragment, Component } from 'react';
-import Quiz from './Quiz';
-import Modal from './Modal';
-import TimeUpModal from './TimeUpModal';
-import Results from './Results';
-import shuffle from '../helpers/shuffle';
-import QUESTION_DATA from '../data/quiz-data-new';
+import { Component, Fragment } from 'react';
 import config from '../config';
+import QUESTION_DATA from '../data/quiz-data-new';
+import shuffle from '../helpers/shuffle';
+import Modal from './Modal';
+import Quiz from './Quiz';
+import Results from './Results';
+import TimeUpModal from './TimeUpModal';
 
 class QuizApp extends Component {
   state = this.getInitialState();
