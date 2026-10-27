@@ -7,17 +7,15 @@
     "dev": "vite",
     "preview": "vite preview",
     "build": "vite build",
-    "lint": "eslint src"
+    "check": "biome check",
+    "fix": "biome check --write"
   },
   "type": "module",
   "homepage": "https://github.com/snikproject/snik-quiz",
   "author": "Konrad Höffner. Original Webpack Version by David Ra Youssef (davidradeveloper@gmail.com)",
   "license": "MIT",
   "devDependencies": {
-    "eslint": "^9.39.5",
-    "eslint-plugin-react": "^7.37.5",
-    "globals": "^17.13.0",
-    "prettier": "^3.9.10"
+    "@biomejs/biome": "^2.6.3"
   },
   "keywords": [
     "react",
