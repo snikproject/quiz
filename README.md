@@ -7,7 +7,7 @@
 
 ## Usage
 
-Play at http://www.snik.eu/quiz by clicking on the correct answer for each of the questions.
+Play at http://www.snik.eu/quiz by clicking on the correct answer for each of the questions or pressing the corresponding letter (`a`–`d`, upper or lower case).
 
 ## Development
 

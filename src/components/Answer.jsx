@@ -1,8 +1,10 @@
 import PropTypes from 'prop-types';
 
-const Answer = ({ answer, handleAnswerClick, handleEnterPress }) => {
+const Answer = ({ answer, status, disabled, handleAnswerClick, handleEnterPress }) => {
+  const className = ['question-answer', status, disabled ? 'disabled' : ''].filter(Boolean).join(' ');
+
   return (
-    <li className="question-answer" onClick={handleAnswerClick} onKeyDown={handleEnterPress}>
+    <li className={className} onClick={handleAnswerClick} onKeyDown={handleEnterPress} tabIndex={disabled ? -1 : 0}>
       <span>{answer}</span>
     </li>
   );
@@ -10,6 +12,8 @@ const Answer = ({ answer, handleAnswerClick, handleEnterPress }) => {
 
 Answer.propTypes = {
   answer: PropTypes.string.isRequired,
+  status: PropTypes.oneOf(['', 'right', 'wrong']),
+  disabled: PropTypes.bool,
   handleAnswerClick: PropTypes.func.isRequired,
   handleEnterPress: PropTypes.func.isRequired
 };

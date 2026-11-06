@@ -200,6 +200,12 @@ code {
   background: rgba(135, 211, 124, 0.5);
 }
 
+.question-answer.wrong,
+.question-answer.disabled {
+  pointer-events: none;
+  cursor: default;
+}
+
 @keyframes shake {
   10%,
   90% {

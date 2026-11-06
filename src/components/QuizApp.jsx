@@ -10,6 +10,14 @@ import TimeUpModal from './TimeUpModal';
 class QuizApp extends Component {
   state = this.getInitialState();
 
+  componentDidMount() {
+    document.addEventListener('keydown', this.handleKeyDown);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('keydown', this.handleKeyDown);
+  }
+
   getInitialState() {
     if (config.QUESTION_SECONDS > 0) setTimeout(() => this.timerStart(), 100); // state not defined yet
     const questionCount = config.MAX_QUESTION_COUNT === 0 ? QUESTION_DATA.length : Math.min(config.MAX_QUESTION_COUNT, QUESTION_DATA.length);
@@ -26,7 +34,9 @@ class QuizApp extends Component {
       questionCount: questionCount,
       userAnswers: QUESTIONS.map(() => {
         return {
-          tries: 0
+          tries: 0,
+          wrong: [],
+          right: null
         };
       }),
       userEvals: QUESTIONS.map(() => ({})),
@@ -80,45 +90,63 @@ class QuizApp extends Component {
     setTimeout(this.nextStep, 1500);
   };
 
-  handleAnswerClick = (index) => (e) => {
+  handleAnswerClick = (index) => {
     const { questions, step, userAnswers } = this.state;
     if (this.state.timeUp) {
       console.warn(`Handle Answer Click: Time is Up. Ignoring Input for Step ${step}`);
       return;
     } // prevent side effects from timer being shown while users answers
+    if (questions.length === 0) return;
+
+    const currentStep = step - 1;
+    const userAnswer = userAnswers[currentStep];
+    if (userAnswer.right !== null || userAnswer.wrong.includes(index)) return;
 
     const isCorrect = questions[0].correct === index;
-    const currentStep = step - 1;
-    const tries = userAnswers[currentStep].tries;
-    if (isCorrect && e.target.nodeName === 'LI') {
+    const tries = userAnswer.tries;
+    const updatedUserAnswer = {
+      ...userAnswer,
+      tries: tries + 1
+    };
+
+    if (isCorrect) {
+      updatedUserAnswer.right = index;
       this.timerCancel();
-      // Prevent other answers from being clicked after correct answer is clicked
-      e.target.parentNode.style.pointerEvents = 'none';
-
-      e.target.classList.add('right');
-
-      userAnswers[currentStep].tries += 1;
-
-      this.setState({ userAnswers: userAnswers });
-
       setTimeout(() => this.showModal(tries), 200);
       setTimeout(() => this.setState({ modal: { state: 'hide' } }), 2000);
 
       if (!config.WAIT) setTimeout(this.nextStep, config.DELAY_MS);
-    } else if (e.target.nodeName === 'LI') {
-      e.target.style.pointerEvents = 'none';
-      e.target.classList.add('wrong');
+    } else {
+      updatedUserAnswer.wrong = [...userAnswer.wrong, index];
+    }
 
-      userAnswers[currentStep].tries += 1;
+    this.setState({
+      userAnswers: userAnswers.map((answer, answerIndex) => (answerIndex === currentStep ? updatedUserAnswer : answer))
+    });
+  };
 
-      this.setState({ userAnswers: userAnswers });
+  handleEnterPress = (index) => (event) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      this.handleAnswerClick(index);
     }
   };
 
-  handleEnterPress = (index) => (e) => {
-    if (e.keyCode === 13) {
-      this.handleAnswerClick(index)(e);
-    }
+  handleKeyDown = (event) => {
+    if (event.repeat || event.ctrlKey || event.metaKey || event.altKey) return;
+
+    const target = event.target;
+    if (target.isContentEditable || target.tagName === 'INPUT' || target.tagName === 'TEXTAREA' || target.tagName === 'SELECT') return;
+
+    const { questions, step, questionCount } = this.state;
+    if (questions.length === 0 || step > questionCount) return;
+    if (!/^[a-d]$/i.test(event.key)) return;
+
+    const index = event.key.toLowerCase().charCodeAt(0) - 'a'.charCodeAt(0);
+    if (index >= questions[0].answers.length) return;
+
+    event.preventDefault();
+    this.handleAnswerClick(index);
   };
 
   handleEvalChange = (inputValues) => {
