@@ -1,6 +1,10 @@
-# Use like "./transform < input > output.js" and then add header and footer.
+#!/bin/sh
+# Use like "./transform-definition < input.tsv > output.js" and then add header and footer.
+tail -n +2 |
+sed 's/\\/\\\\/g' |
 sed "s|\"||g" |
-sed "s|^|{question: <span> What is defined by this? \"|" |
-sed "s|	|\"<\/span>, answers: [<span> |" | 
-sed "s|	|</span>,<span>|g" |
-sed "s|$|</span>,], correct: 0},|"
+sed "s|'|\\\\'|g" |
+sed "s|^|{question: 'What is defined by this? \"|" |
+sed "s|	|\"', answers: ['|" |
+sed "s|	|','|g" |
+sed "s|$|'], correct: 0},|"
