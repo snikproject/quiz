@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
-import ReactCountdownClock from 'react-countdown-clock';
 import config from '../config';
+import CountdownClock from './CountdownClock';
 import QuestionList from './QuestionList';
 
 const Quiz = ({ step, questions, questionCount, score, handleAnswerClick, handleEnterPress, handleEvalChange, handleNext, state }) => {
@@ -17,9 +17,7 @@ const Quiz = ({ step, questions, questionCount, score, handleAnswerClick, handle
           </div>
         </div>
         <div>
-          {config.QUESTION_SECONDS > 0 && (
-            <ReactCountdownClock seconds={config.QUESTION_SECONDS} key={state.clockCompletions} color="#000" alpha={0.9} size={180} />
-          )}
+          {config.QUESTION_SECONDS > 0 && <CountdownClock seconds={config.QUESTION_SECONDS} key={state.clockCompletions} color="#000" alpha={0.9} size={180} />}
         </div>
         <h1>SNIK Quiz</h1>
         Examples of old and new questions
