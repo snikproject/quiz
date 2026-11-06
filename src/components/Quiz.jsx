@@ -4,6 +4,8 @@ import config from '../config';
 import QuestionList from './QuestionList';
 
 const Quiz = ({ step, questions, questionCount, score, handleAnswerClick, handleEnterPress, handleEvalChange, handleNext, state }) => {
+  const userAnswer = state.userAnswers[step - 1] ?? { tries: 0, wrong: [], right: null };
+
   return (
     <div className="wrapper">
       <header>
@@ -31,6 +33,7 @@ const Quiz = ({ step, questions, questionCount, score, handleAnswerClick, handle
       <div className="questions">
         <QuestionList
           questions={questions}
+          userAnswer={userAnswer}
           handleAnswerClick={handleAnswerClick}
           handleEnterPress={handleEnterPress}
           handleEvalChange={handleEvalChange}
