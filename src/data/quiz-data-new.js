@@ -1,7 +1,7 @@
 export default [
   {
     question:
-      'What is defined by this? "Class of uniform messages, determines which data about which entity types are communicated by a message belonging to this X. A X can belong to a communication standard."',
+      'What is defined by this? "Class of uniform messages, determines which data about which entity types are communicated by a message belonging to this X. X can belong to a communication standard."',
     answers: ['Message Type', 'entity type', 'software product', 'Information Management Entity Type'],
     correct: 0
   },
@@ -22,7 +22,7 @@ export default [
   },
   {
     question:
-      'What is defined by this? "A model is called a X for a certain class of systems and a certain class of questions or tasks dealing with these systems, if it provides model patterns supporting • the derivation of more specific models through modifications, limitations, or completions (generic Xs) or • direct comparison of different models with the X concerning certain quality aspects of the modeled systems (e.g., completeness, styles of system’s architecture) (nongeneric Xs)."',
+      'What is defined by this? "A model is called X for a certain class of systems and a certain class of questions or tasks dealing with these systems, if it provides model patterns supporting • the derivation of more specific models through modifications, limitations, or completions (generic Xs) or • direct comparison of different models with the X concerning certain quality aspects of the modeled systems (e.g., completeness, styles of system’s architecture) (nongeneric Xs)."',
     answers: ['Reference Model', 'Framework', 'Metamodel', 'Model'],
     correct: 0
   },
@@ -103,7 +103,7 @@ export default [
     correct: 0
   },
   {
-    question: 'What is defined by this? "The information system of a health care network is called a X"',
+    question: 'What is defined by this? "The information system of a health care network is called X"',
     answers: ['Transinstitutional Health Information System', 'Hospital', 'Model', 'Pharmacy'],
     correct: 0
   },
@@ -120,12 +120,12 @@ export default [
     correct: 0
   },
   {
-    question: 'What contains a Resource?',
+    question: 'What contains Resource?',
     answers: ['Study', 'Clinical Trial', 'Evaluation Method', 'Study Objective'],
     correct: 0
   },
   {
-    question: 'What contains a 3LGM² Logical Tool Layer?',
+    question: 'What contains 3LGM² Logical Tool Layer?',
     answers: ['3LGM²', '3LGM²-B', '3LGM²-B', 'Information System Metamodel'],
     correct: 0
   },
@@ -175,7 +175,7 @@ export default [
     correct: 0
   },
   {
-    question: 'What contains a Project Initiation Phase?',
+    question: 'What contains Project Initiation Phase?',
     answers: ['Project', 'Information Management Entity Type', 'Migration Path', 'Project Completion Phase'],
     correct: 0
   },
@@ -205,7 +205,7 @@ export default [
     correct: 0
   },
   {
-    question: 'What contains a Patient Admission?',
+    question: 'What contains Patient Admission?',
     answers: ['Patient Care', 'Administrative Admission', 'Coding of Diagnoses and Procedures', 'Execution of Diagnostic Therapeutic and Nursing Procedures'],
     correct: 0
   },
@@ -230,12 +230,12 @@ export default [
     correct: 0
   },
   {
-    question: 'What contains a HL7 Message Header?',
+    question: 'What contains HL7 Message Header?',
     answers: ['ADT', 'HL7 Event Description', 'HL7 Message Type', 'HL7 Patient Identification'],
     correct: 0
   },
   {
-    question: 'What contains a Resource?',
+    question: 'What contains Resource?',
     answers: ['Study', 'Clinical Trial', 'Evaluation Method', 'Laboratory Study'],
     correct: 0
   },
@@ -250,7 +250,7 @@ export default [
     correct: 0
   },
   {
-    question: 'What contains a 3LGM² Interlayer Relationship?',
+    question: 'What contains 3LGM² Interlayer Relationship?',
     answers: ['3LGM²', '3LGM²-B', '3LGM²-B', 'Technical Metamodel'],
     correct: 0
   },
@@ -260,7 +260,7 @@ export default [
     correct: 0
   },
   {
-    question: 'What contains a First Study Design?',
+    question: 'What contains First Study Design?',
     answers: ['IT Evaluation Study Management and Execution', 'Ad Hoc Monitoring', 'Execution of a Quantitative Study', 'Execution of an IT Evaluation Study'],
     correct: 0
   },
@@ -275,7 +275,7 @@ export default [
     correct: 0
   },
   {
-    question: 'What contains a Service Operation?',
+    question: 'What contains Service Operation?',
     answers: ['ITIL Service Lifecycle', 'Information Management Function', 'Continual Service Improvement', 'Service Design'],
     correct: 0
   },
@@ -720,7 +720,7 @@ export default [
     correct: 0
   },
   {
-    question: 'Who contains a Chief Executive Officer?',
+    question: 'Who contains Chief Executive Officer?',
     answers: ['Top Management', 'Chief Financial Officer', 'Hospital Staff', 'Project Management Board'],
     correct: 0
   },
