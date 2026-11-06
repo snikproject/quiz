@@ -1,7 +1,7 @@
 export default [
   {
     question:
-      'What is defined by this? "Class of uniform messages, determines which data about which entity types are communicated by a message belonging to this X. X can belong to a communication standard."',
+      'What is defined by this? "Class of uniform Ys, determines which data about which entity types are communicated by a Y belonging to this X. X can belong to a communication standard."',
     answers: ['Message Type', 'entity type', 'software product', 'Information Management Entity Type'],
     correct: 0
   },
@@ -34,7 +34,7 @@ export default [
   },
   {
     question:
-      'What is defined by this? "Application component that supports the storage, management, manipulation, and presentation of digital images and their communication to attached workstations for the diagnosing specialists or for the ordering departments."',
+      'What is defined by this? "Application component that supports the storage, management, manipulation, and presentation of digital images and their X to attached workstations for the diagnosing specialists or for the ordering departments."',
     answers: ['Picture Archiving and Communication System', 'Computer-Based Application System', 'Radiotherapy', 'computer based application component'],
     correct: 0
   },
@@ -46,25 +46,25 @@ export default [
   },
   {
     question:
-      'What is defined by this? "A message type describes a class of uniform messages and determines which data about which entity types is communicated by a message belonging to this message type."',
+      'What is defined by this? "A X Y describes a class of uniform Xs and determines which data about which entity Ys is communicated by a X belonging to this X Y."',
     answers: ['3LGM²-M Message Type', 'UML Attribute', 'UML Class', 'UML Method'],
     correct: 0
   },
   {
     question:
-      'What is defined by this? " diverse software products from different manufacturers lead to very heterogeneous (DB  n  , AC  n  , V  n  ) architectures. At the physical tool layer, heterogeneity is often the consequence of the evolution of the HIS, comprising different generations of computer systems."',
+      'What is defined by this? " diverse software products from different manufacturers lead to very X (DB  n  , AC  n  , V  n  ) architectures. At the physical tool layer, Y is often the consequence of the evolution of the HIS, comprising different generations of computer systems."',
     answers: ['Heterogeneous Architecture', 'HIS Architecture', 'Architecture of an Information System', 'Computer-Based Tool'],
     correct: 0
   },
   {
     question:
-      'What is defined by this? "For the hospital as an enterprise, the hospital information system should typically contribute to high quality patient care, efficient usage of resources, and fulfillment of legal requirements as general goals of all hospitals."',
+      'What is defined by this? "For the Y as an enterprise, the Y information system should typically contribute to high quality patient care, efficient usage of resources, and U of legal requirements as general T of all Ys."',
     answers: ['Fulfillment of Strategic Hospital Goal', 'HIS Quality', 'Management Entity Type', 'Quality of HIS Outcome'],
     correct: 0
   },
   {
     question:
-      'What is defined by this? "As their names imply, providing interfaces and invoking interfaces, each belonging to only one application component, are able to provide or to invoke services."',
+      'What is defined by this? "As their names imply, X interfaces and invoking interfaces, each belonging to only one application component, are able to provide or to invoke services."',
     answers: ['3LGM²-S Providing Interface', 'UML Abstract Class', '3LGM² Communication Interface', '3LGM² Entity Type'],
     correct: 0
   },
@@ -81,7 +81,7 @@ export default [
   },
   {
     question:
-      'What is defined by this? "As their names imply, providing interfaces and invoking interfaces, each belonging to only one application component, are able to provide or to invoke services."',
+      'What is defined by this? "As their names imply, providing interfaces and X interfaces, each belonging to only one application component, are able to provide or to invoke services."',
     answers: ['3LGM²-S Invoking Interface', 'UML Abstract Class', '3LGM² Communication Interface', '3LGM² Entity Type'],
     correct: 0
   },
@@ -98,18 +98,17 @@ export default [
     correct: 0
   },
   {
-    question: 'What is defined by this? "The physical tool layer is a set of physical data processing systems."',
+    question: 'What is defined by this? "The X Y Z is a set of X data processing systems."',
     answers: ['3LGM² Physical Tool Layer', 'entity type', 'software product', 'UML Class'],
     correct: 0
   },
   {
-    question: 'What is defined by this? "The information system of a health care network is called X"',
+    question: 'What is defined by this? "The Z W of a Y care network is called X"',
     answers: ['Transinstitutional Health Information System', 'Hospital', 'Model', 'Pharmacy'],
     correct: 0
   },
   {
-    question:
-      'What is defined by this? "An information system that comprises computer-based information processing and communication tools is called a computer-based information system."',
+    question: 'What is defined by this? "An X Y that comprises Z-based X processing and communication tools is called a Z-based X Y."',
     answers: ['Computer-Supported Information System', 'entity type', 'software product', 'Computer-Based Tool'],
     correct: 0
   },
