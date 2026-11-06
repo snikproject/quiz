@@ -1,19 +1,24 @@
 #!/bin/sh
-# Use like "./transform-subject < input.tsv > output.js" and then add header and footer.
-tail -n +2 |
-# No leading article ("a"/"an") is added: it would let players exclude
-# candidates by first letter (see issue #33) and the old a->an fixup also
-# corrupted words such as "Data Integration" -> "Datan Integration".
-sed "s|What entity type component|What contains|" |
-sed "s|What role component|Who contains|" |
-sed "s|What function component|What contains|" |
-sed "s|What is responsible for |Who is responsible for |" |
-sed "s|What approves |Who approves |" |
-sed "s|What is involved in |Who is involved in |" |
-sed 's/\\/\\\\/g' |
-sed "s|\"||g" |
-sed "s|'|\\\\'|g" |
-sed "s|^|{question: '|" |
-sed "s|	|', answers: ['|" |
-sed "s|	|','|g" |
-sed "s|$|'], correct: 0},|"
+# Use like "./transform-subject < input.tsv > output.js".
+# The generated file starts with a Biome suppression comment so it stays one record per line.
+{
+	printf '%s\n' '// biome-ignore-all format: generated data, keep one record per line' 'export default ['
+	tail -n +2 |
+	# No leading article ("a"/"an") is added: it would let players exclude
+	# candidates by first letter (see issue #33) and the old a->an fixup also
+	# corrupted words such as "Data Integration" -> "Datan Integration".
+	sed "s|What entity type component|What contains|" |
+	sed "s|What role component|Who contains|" |
+	sed "s|What function component|What contains|" |
+	sed "s|What is responsible for |Who is responsible for |" |
+	sed "s|What approves |Who approves |" |
+	sed "s|What is involved in |Who is involved in |" |
+	sed 's/\\/\\\\/g' |
+	sed "s|\"||g" |
+	sed "s|'|\\\\'|g" |
+	sed "s|^|{question: '|" |
+	sed "s|	|', answers: ['|" |
+	sed "s|	|','|g" |
+	sed "s|$|'], correct: 0},|"
+	printf '%s\n' '];'
+}

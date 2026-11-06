@@ -1,3 +1,4 @@
+// biome-ignore-all format: hand-maintained question data, keep one record per line
 export default [
 {question: 'What is defined by this? "Class of uniform Ys, determines which data about which entity types are communicated by a Y belonging to this X. X can belong to a communication standard."', answers: ['Message Type','entity type','software product','Information Management Entity Type'], correct: 0},
 {question: 'What is defined by this? "For example, the mobile tools used on a ward can be updated with new memory easily."', answers: ['flexible physical data processing system','3LGM² Physical Data Processing System','Application Component','Information Management Entity Type'], correct: 0},

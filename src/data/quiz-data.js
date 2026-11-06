@@ -1,3 +1,4 @@
+// biome-ignore-all format: generated data, keep one record per line
 export default [
 {question: 'What is defined by this? "Logical and chronological sequence of enterprise functions which interpret or update data about entities. Different from business processes, information processes do not contain the conditions under which enterprise functions are performed."', answers: ['3LGM² Information Process','entity type','software product','UML Class'], correct: 0},
 {question: 'What is defined by this? "The X contains all clinical data about a patient, including medical and nursing anamnesis, finding discharge summery etc."', answers: ['Patient History','Activity','Diagnosis','Finding'], correct: 0},

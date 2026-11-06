@@ -1,10 +1,15 @@
 #!/bin/sh
-# Use like "./transform < input.tsv > output.js" and then add header and footer.
-tail -n +2 |
-sed 's/\\/\\\\/g' |
-sed "s|\"||g" |
-sed "s|'|\\\\'|g" |
-sed "s|^|{question: '|" |
-sed "s|	|', answers: ['|" |
-sed "s|	|','|g" |
-sed "s|$|'], correct: 0},|"
+# Use like "./transform < input.tsv > output.js".
+# The generated file starts with a Biome suppression comment so it stays one record per line.
+{
+	printf '%s\n' '// biome-ignore-all format: generated data, keep one record per line' 'export default ['
+	tail -n +2 |
+	sed 's/\\/\\\\/g' |
+	sed "s|\"||g" |
+	sed "s|'|\\\\'|g" |
+	sed "s|^|{question: '|" |
+	sed "s|	|', answers: ['|" |
+	sed "s|	|','|g" |
+	sed "s|$|'], correct: 0},|"
+	printf '%s\n' '];'
+}

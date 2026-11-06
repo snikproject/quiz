@@ -1,3 +1,4 @@
+// biome-ignore-all format: generated data, keep one record per line
 export default [
 {question: 'What increases Transparency?', answers: ['HIS Certification','Information Management','Certification by CCHIT','Certification by EuroRec'], correct: 0},
 {question: 'What increases Transparency?', answers: ['HIS Certification','Information Management Function','Certification by CCHIT','Certification by EuroRec'], correct: 0},
