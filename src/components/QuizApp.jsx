@@ -46,10 +46,10 @@ class QuizApp extends Component {
 
   timerStart = () => {
     if (this.state.timerStep === this.state.step) {
-      console.warn('Timer for step ' + this.state.step + ' already exists.');
+      console.warn(`Timer for step ${this.state.step} already exists.`);
       return;
     }
-    console.debug('timer start for step ' + this.state.step);
+    console.debug(`timer start for step ${this.state.step}`);
     const id = setTimeout(() => this.timerEnd(this.state.step), config.QUESTION_SECONDS * 1000);
     this.setState({ timerStep: this.state.step, timeUp: false, timerId: id });
     this.setState({ clockCompletions: this.state.clockCompletions + 1 });
@@ -67,15 +67,15 @@ class QuizApp extends Component {
 
   timerEnd = (step) => {
     if (!this.state.timerId) {
-      console.debug('timer cancelled for step ' + step);
+      console.debug(`timer cancelled for step ${step}`);
       return;
     }
     if (step !== this.state.step) {
-      console.warn('outdated timer for step ' + step + 'cancelled.');
+      console.warn(`outdated timer for step ${step} cancelled.`);
       return;
     }
     this.setState({ timeUp: true });
-    console.debug('time is up for step ' + step);
+    console.debug(`time is up for step ${step}`);
     this.showTimeUpModal();
     setTimeout(this.nextStep, 1500);
   };
@@ -83,7 +83,7 @@ class QuizApp extends Component {
   handleAnswerClick = (index) => (e) => {
     const { questions, step, userAnswers } = this.state;
     if (this.state.timeUp) {
-      console.warn('Handle Answer Click: Time is Up. Ignoring Input for Step ' + step);
+      console.warn(`Handle Answer Click: Time is Up. Ignoring Input for Step ${step}`);
       return;
     } // prevent side effects from timer being shown while users answers
 
@@ -122,7 +122,7 @@ class QuizApp extends Component {
   };
 
   handleEvalChange = (inputValues) => {
-    const { questions, step, userEvals } = this.state;
+    const { step, userEvals } = this.state;
     const currentStep = step - 1;
     userEvals[currentStep] = inputValues;
 

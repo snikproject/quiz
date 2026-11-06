@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 
 const Answer = ({ answer, handleAnswerClick, handleEnterPress }) => {
   return (
-    <li className="question-answer" tabIndex="0" onClick={handleAnswerClick} onKeyDown={handleEnterPress}>
+    <li className="question-answer" onClick={handleAnswerClick} onKeyDown={handleEnterPress}>
       <span>{answer}</span>
     </li>
   );

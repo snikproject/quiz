@@ -1,14 +1,13 @@
 /** A controlled form in a functional component. This allows the state to be updated on change, without requiring submit.
  * See <https://medium.com/swlh/building-controlled-forms-using-functional-components-in-react-965d033a89bd>. */
 
-import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
 import config from '../config';
 
 const EvaluationBox = ({ name, content, handleChange }) => {
   const [checked, setChecked] = useState(false);
 
-  const boxHandleChange = (event) => {
+  const boxHandleChange = (_event) => {
     handleChange({ target: { name, value: !checked } });
     setChecked(!checked);
   };
@@ -25,7 +24,7 @@ const EvaluationBox = ({ name, content, handleChange }) => {
 
 const Evaluation = ({ handleEvalChange, handleNext }) => {
   const [inputValues, setInputValues] = useState({});
-  useEffect(() => handleEvalChange(inputValues), [inputValues]);
+  useEffect(() => handleEvalChange(inputValues), [inputValues, handleEvalChange]);
 
   const handleChange = ({ target: { name, value } }) => {
     setInputValues({ ...inputValues, [name]: value });
