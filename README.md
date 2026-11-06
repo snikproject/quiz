@@ -27,10 +27,10 @@ For each template:
 
 1. Execute the SPARQL query in the `sparql` directory, for example [definition.sparql](sparql/definition.sparql). You may need to disable "Strict checking of void variables" in the Virtuoso SPARQL Query Editor.
 2. Save the output as a tab separated values (TSV) file, such as `definition.tsv`.
-3. Use the transformation script to create a JavaScript for example `./transform-definition < input > definition.js`
-4. The transformation file may not be correct, use a text editor with search and replace to create a syntactically correct JavaScript array.
+3. Use the transformation script to create a JavaScript fragment for example `./transform-definition < input.tsv > definition.js`. The script skips the TSV header row and emits question and answer text as escaped strings.
+4. Review the generated fragment and correct any remaining errors with a text editor.
 
-At the end, use the existing [quiz-data.js](src/data/quiz-data.js) to get the header and footer and add the contents of the template arrays.
+At the end, use the existing [quiz-data.js](src/data/quiz-data.js) to get the header and footer and add the contents of the template arrays. Data files contain plain strings, not JSX elements.
 
 #### Question Templates
 
