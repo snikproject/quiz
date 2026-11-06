@@ -57,7 +57,7 @@ const Results = ({ userAnswers, userEvals, score, restartQuiz }) => {
       <div className="results-total">
         Your Total Score is <strong>{score}</strong>.
       </div>
-      <a onClick={restartQuiz}>Restart Quiz</a>
+      <button type="button" onClick={restartQuiz}>Restart Quiz</button>
       <form name="submit-to-google">
         name:
         <input type="text" name="name" />
