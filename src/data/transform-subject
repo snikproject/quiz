@@ -1,13 +1,15 @@
 #!/bin/sh
 # Use like "./transform-subject < input.tsv > output.js" and then add header and footer.
 tail -n +2 |
-sed "s|What entity type component|What contains a|" |
-sed "s|What role component|Who contains a|" |
-sed "s|What function component|What contains a|" |
+# No leading article ("a"/"an") is added: it would let players exclude
+# candidates by first letter (see issue #33) and the old a->an fixup also
+# corrupted words such as "Data Integration" -> "Datan Integration".
+sed "s|What entity type component|What contains|" |
+sed "s|What role component|Who contains|" |
+sed "s|What function component|What contains|" |
 sed "s|What is responsible for |Who is responsible for |" |
 sed "s|What approves |Who approves |" |
 sed "s|What is involved in |Who is involved in |" |
-sed "s|a \([AEIOU]\)|an \1|" |
 sed 's/\\/\\\\/g' |
 sed "s|\"||g" |
 sed "s|'|\\\\'|g" |
