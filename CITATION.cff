@@ -18,3 +18,23 @@ keywords:
   - information management
   - multiple choice quiz
 license: MIT
+preferred-citation:
+  type: article
+  authors:
+    - family-names: Höffner
+      given-names: Konrad
+    - family-names: Roszeitis
+      given-names: Arne
+    - family-names: Wächtler
+      given-names: Max Niclas
+    - family-names: Jahn
+      given-names: Franziska
+    - family-names: Winter
+      given-names: Alfred
+  title: "SNIK Quiz: A Multiple Choice Game About Information Management in Hospitals"
+  journal: Studies in Health Technology and Informatics
+  year: 2022
+  volume: 294
+  start: 790
+  end: 795
+  doi: 10.3233/SHTI220585
