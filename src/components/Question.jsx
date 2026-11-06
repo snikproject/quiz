@@ -5,14 +5,14 @@ import Evaluation from './Evaluation';
 const Question = ({ question, answers, handleAnswerClick, handleEnterPress, handleEvalChange, handleNext }) => {
   return (
     <li className="question">
-      <h2 className="question-title" tabIndex="0">
+      <h2 className="question-title">
         <span>{question}</span>
       </h2>
       <ul className="question-answers" tabIndex="-1">
         {answers.map((answer, index) => {
           return (
             <Answer
-              key={index}
+              key={answer}
               answer={answer}
               handleAnswerClick={handleAnswerClick(index)}
               handleEnterPress={handleEnterPress(index)}
